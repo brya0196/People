@@ -16,6 +16,10 @@ namespace People.Data
         public DbSet<Province> Provinces { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<KindService> kindServices { get; set; }
-        public DbSet<>
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Residence> Residences { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<Person> People { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
