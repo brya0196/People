@@ -10,8 +10,9 @@ namespace People.Data.Interface
     {
         IEnumerable<User> GetAll();
         User GetById(int Id);
-        Task Add(User province);
-        Task Update(User province);
+        Task Add(User user);
+        Task Update(User user);
         Task Delete(int Id);
+        Task ChangePassword(int Id, string newPassword);
     }
 }
