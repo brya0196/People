@@ -10,8 +10,8 @@ namespace People.Data.Interface
     {
         IEnumerable<Residence> GetAll();
         Residence GetById(int Id);
-        Task Add(Residence province);
-        Task Update(Residence province);
+        Task Add(Residence residence);
+        Task Update(Residence residence);
         Task Delete(int Id);
     }
 }
