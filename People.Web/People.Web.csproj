@@ -25,4 +25,10 @@
     <ProjectReference Include="..\People.Data\People.Data.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\angular\app\" />
+    <Folder Include="wwwroot\angular\common\" />
+  </ItemGroup>
+
 </Project>

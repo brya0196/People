@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Repositories;
 using People.Data.Entities;
+using People.Data.Interface;
 
 namespace People.Web.Controllers.Api
 {
@@ -10,17 +11,17 @@ namespace People.Web.Controllers.Api
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private readonly PersonRepository _personRepository;
+        private readonly IPerson _person;
 
-        public PersonController(PersonRepository personRepository)
+        public PersonController(IPerson person)
         {
-            _personRepository = personRepository;
+            _person = person;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _personRepository.GetAll();
+            var result = _person.GetAll();
 
             if (!result.Any()) return NotFound();
 
@@ -30,7 +31,7 @@ namespace People.Web.Controllers.Api
         [HttpGet]
         public IActionResult GetById(int Id)
         {
-            var result = _personRepository.GetById(Id);
+            var result = _person.GetById(Id);
 
             if (result == null) return NotFound();
 
@@ -42,7 +43,7 @@ namespace People.Web.Controllers.Api
         {
             if (person == null) return BadRequest();
 
-            await _personRepository.Add(person);
+            await _person.Add(person);
 
             return Ok(person);
         }
@@ -52,7 +53,7 @@ namespace People.Web.Controllers.Api
         {
             if (person == null) return BadRequest();
 
-            await _personRepository.Update(person);
+            await _person.Update(person);
 
             return Ok(person);
         }
@@ -62,7 +63,7 @@ namespace People.Web.Controllers.Api
         {
             if (Id == 0) return BadRequest();
 
-            await _personRepository.Delete(Id);
+            await _person.Delete(Id);
 
             return Ok("Deleted");
         }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Repositories;
 using People.Data.Entities;
+using People.Data.Interface;
 
 namespace People.Web.Controllers.Api
 {
@@ -13,17 +14,17 @@ namespace People.Web.Controllers.Api
     [ApiController]
     public class KindServiceController : ControllerBase
     {
-        private readonly KindServiceRepository _kindServiceRepository;
+        private readonly IKindService _kindService;
 
-        public KindServiceController(KindServiceRepository kindServiceRepository)
+        public KindServiceController(IKindService kindService)
         {
-            _kindServiceRepository = kindServiceRepository;
+            _kindService = kindService;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _kindServiceRepository.GetAll();
+            var result = _kindService.GetAll();
 
             if (!result.Any()) return NotFound();
 
@@ -33,7 +34,7 @@ namespace People.Web.Controllers.Api
         [HttpGet]
         public IActionResult GetById(int Id)
         {
-            var result = _kindServiceRepository.GetById(Id);
+            var result = _kindService.GetById(Id);
 
             if (result == null) return NotFound();
 
@@ -45,7 +46,7 @@ namespace People.Web.Controllers.Api
         {
             if (kindService == null) return BadRequest();
 
-            await _kindServiceRepository.Add(kindService);
+            await _kindService.Add(kindService);
 
             return Ok(kindService);
         }
@@ -55,7 +56,7 @@ namespace People.Web.Controllers.Api
         {
             if (kindService == null) return BadRequest();
 
-            await _kindServiceRepository.Update(kindService);
+            await _kindService.Update(kindService);
 
             return Ok(kindService);
         }
@@ -65,7 +66,7 @@ namespace People.Web.Controllers.Api
         {
             if (Id == 0) return BadRequest();
 
-            await _kindServiceRepository.Delete(Id);
+            await _kindService.Delete(Id);
 
             return Ok("Deleted");
         }

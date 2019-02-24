@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Repositories;
 using People.Data.Entities;
+using People.Data.Interface;
 
 namespace People.Web.Controllers.Api
 {
@@ -13,17 +14,17 @@ namespace People.Web.Controllers.Api
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly CityRepository _cityRepository;
+        private readonly ICity _city;
 
-        public CityController(CityRepository cityRepository)
+        public CityController(ICity city)
         {
-            _cityRepository = cityRepository;
+            _city = city;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _cityRepository.GetAll();
+            var result = _city.GetAll();
 
             if (!result.Any()) return NotFound();
 
@@ -33,7 +34,7 @@ namespace People.Web.Controllers.Api
         [HttpGet]
         public IActionResult GetById(int Id)
         {
-            var result = _cityRepository.GetById(Id);
+            var result = _city.GetById(Id);
 
             if (result == null) return NotFound();
 
@@ -45,7 +46,7 @@ namespace People.Web.Controllers.Api
         {
             if (city == null) return BadRequest();
 
-            await _cityRepository.Add(city);
+            await _city.Add(city);
 
             return Ok(city);
         }
@@ -55,7 +56,7 @@ namespace People.Web.Controllers.Api
         {
             if (city == null) return BadRequest();
 
-            await _cityRepository.Update(city);
+            await _city.Update(city);
 
             return Ok(city);
         }
@@ -65,7 +66,7 @@ namespace People.Web.Controllers.Api
         {
             if (Id == 0) return BadRequest();
 
-            await _cityRepository.Delete(Id);
+            await _city.Delete(Id);
 
             return Ok("Deleted");
         }

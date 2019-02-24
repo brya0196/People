@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Repositories;
 using People.Data.Entities;
+using People.Data.Interface;
 
 namespace People.Web.Controllers.Api
 {
@@ -13,17 +14,17 @@ namespace People.Web.Controllers.Api
     [ApiController]
     public class ServiceController : ControllerBase
     {
-        private readonly ServiceRepository _serviceRepository;
+        private readonly IService _service;
 
-        public ServiceController(ServiceRepository serviceRepository)
+        public ServiceController(IService service)
         {
-            _serviceRepository = serviceRepository;
+            _service = service;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _serviceRepository.GetAll();
+            var result = _service.GetAll();
 
             if (!result.Any()) return NotFound();
 
@@ -33,7 +34,7 @@ namespace People.Web.Controllers.Api
         [HttpGet]
         public IActionResult GetById(int Id)
         {
-            var result = _serviceRepository.GetById(Id);
+            var result = _service.GetById(Id);
 
             if (result == null) return NotFound();
 
@@ -45,7 +46,7 @@ namespace People.Web.Controllers.Api
         {
             if (service == null) return BadRequest();
 
-            await _serviceRepository.Add(service);
+            await _service.Add(service);
 
             return Ok(service);
         }
@@ -55,7 +56,7 @@ namespace People.Web.Controllers.Api
         {
             if (service == null) return BadRequest();
 
-            await _serviceRepository.Update(service);
+            await _service.Update(service);
 
             return Ok(service);
         }
@@ -65,7 +66,7 @@ namespace People.Web.Controllers.Api
         {
             if (Id == 0) return BadRequest();
 
-            await _serviceRepository.Delete(Id);
+            await _service.Delete(Id);
 
             return Ok("Deleted");
         }

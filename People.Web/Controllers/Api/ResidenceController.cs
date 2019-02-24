@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Repositories;
 using People.Data.Entities;
+using People.Data.Interface;
 
 namespace People.Web.Controllers.Api
 {
@@ -13,17 +14,17 @@ namespace People.Web.Controllers.Api
     [ApiController]
     public class ResidenceController : ControllerBase
     {
-        private readonly ResidenceRepository _residenceRepository;
+        private readonly IResidence _residence;
 
-        public ResidenceController(ResidenceRepository residenceRepository)
+        public ResidenceController(IResidence residence)
         {
-            _residenceRepository = residenceRepository;
+            _residence = residence;
         }
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _residenceRepository.GetAll();
+            var result = _residence.GetAll();
 
             if (!result.Any()) return NotFound();
 
@@ -33,7 +34,7 @@ namespace People.Web.Controllers.Api
         [HttpGet]
         public IActionResult GetById(int Id)
         {
-            var result = _residenceRepository.GetById(Id);
+            var result = _residence.GetById(Id);
 
             if (result == null) return NotFound();
 
@@ -45,7 +46,7 @@ namespace People.Web.Controllers.Api
         {
             if (residence == null) return BadRequest();
 
-            await _residenceRepository.Add(residence);
+            await _residence.Add(residence);
 
             return Ok(residence);
         }
@@ -55,7 +56,7 @@ namespace People.Web.Controllers.Api
         {
             if (residence == null) return BadRequest();
 
-            await _residenceRepository.Update(residence);
+            await _residence.Update(residence);
 
             return Ok(residence);
         }
@@ -65,7 +66,7 @@ namespace People.Web.Controllers.Api
         {
             if (Id == 0) return BadRequest();
 
-            await _residenceRepository.Delete(Id);
+            await _residence.Delete(Id);
 
             return Ok("Deleted");
         }

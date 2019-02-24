@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Repositories;
 using People.Data.Entities;
+using People.Data.Interface;
 
 namespace People.Web.Controllers.Api
 {
@@ -13,27 +14,27 @@ namespace People.Web.Controllers.Api
     [ApiController]
     public class ProvinceController : ControllerBase
     {
-        private readonly ProvinceRepository _provinceRepository;
+        private readonly IProvince _province;
 
-        public ProvinceController(ProvinceRepository provinceRepository)
+        public ProvinceController(IProvince province)
         {
-            _provinceRepository = provinceRepository;
+            _province = province;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            var result = _provinceRepository.GetAll();
+            var result = _province.GetAll();
 
             if (!result.Any()) return NotFound();
 
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("GetById")]
         public IActionResult GetById(int Id)
         {
-            var result = _provinceRepository.GetById(Id);
+            var result = _province.GetById(Id);
 
             if (result == null) return NotFound();
 
@@ -45,7 +46,7 @@ namespace People.Web.Controllers.Api
         {
             if (province == null) return BadRequest();
 
-            await _provinceRepository.Add(province);
+            await _province.Add(province);
 
             return Ok(province);
         }
@@ -55,7 +56,7 @@ namespace People.Web.Controllers.Api
         {
             if (province == null) return BadRequest();
 
-            await _provinceRepository.Update(province);
+            await _province.Update(province);
 
             return Ok(province);
         }
@@ -65,7 +66,7 @@ namespace People.Web.Controllers.Api
         {
             if (Id == 0) return BadRequest();
 
-            await _provinceRepository.Delete(Id);
+            await _province.Delete(Id);
 
             return Ok("Deleted");
         }
