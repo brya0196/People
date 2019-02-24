@@ -20,7 +20,7 @@ namespace People.Web.Controllers.Api
             _provinceRepository = provinceRepository;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             var result = _provinceRepository.GetAll();
@@ -30,7 +30,7 @@ namespace People.Web.Controllers.Api
             return Ok(result);
         }
 
-        [HttpGet("GetById/{Id:int}")]
+        [HttpGet]
         public IActionResult GetById(int Id)
         {
             var result = _provinceRepository.GetById(Id);
@@ -40,7 +40,7 @@ namespace People.Web.Controllers.Api
             return Ok(result);
         }
 
-        [HttpPost("Add")]
+        [HttpPost]
         public async Task<IActionResult> Add([FromBody]Province province)
         {
             if (province == null) return BadRequest();
@@ -50,7 +50,7 @@ namespace People.Web.Controllers.Api
             return Ok(province);
         }
 
-        [HttpPut("Update")]
+        [HttpPut]
         public async Task<IActionResult> Update([FromBody]Province province)
         {
             if (province == null) return BadRequest();
@@ -60,7 +60,7 @@ namespace People.Web.Controllers.Api
             return Ok(province);
         }
 
-        [HttpDelete("Delete/{Id:int}")]
+        [HttpDelete]
         public async Task<IActionResult> Delete(int Id)
         {
             if (Id == 0) return BadRequest();
