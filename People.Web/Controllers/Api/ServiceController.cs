@@ -26,8 +26,6 @@ namespace People.Web.Controllers.Api
         {
             var result = _service.GetAll();
 
-            if (!result.Any()) return NotFound();
-
             return Ok(result);
         }
 

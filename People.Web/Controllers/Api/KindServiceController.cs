@@ -26,8 +26,6 @@ namespace People.Web.Controllers.Api
         {
             var result = _kindService.GetAll();
 
-            if (!result.Any()) return NotFound();
-
             return Ok(result);
         }
 
