@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using People.Data;
+using People.Data.Interface;
+using People.Core.Repositories;
 
 namespace People.Web
 {
@@ -41,6 +43,14 @@ namespace People.Web
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<PeopleDbContext>();
+
+            // injection repositories
+            services.AddScoped<IProvince, ProvinceRepository>();
+            services.AddScoped<ICity, CityRepository>();
+            services.AddScoped<IKindService, KindServiceRepository>();
+            services.AddScoped<IResidence, ResidenceRepository>();
+            services.AddScoped<IPerson, PersonRepository>();
+            services.AddScoped<IService, ServiceRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
