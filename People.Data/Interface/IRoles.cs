@@ -10,8 +10,8 @@ namespace People.Data.Interface
     {
         IEnumerable<Role> GetAll();
         Role GetById(int Id);
-        Task Add(Role province);
-        Task Update(Role province);
+        Task Add(Role role);
+        Task Update(Role role);
         Task Delete(int Id);
     }
 }
