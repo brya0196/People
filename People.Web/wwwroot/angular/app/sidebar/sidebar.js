@@ -2,6 +2,6 @@
     'use strict';
 
     angular.module('app').component('sideBar', {
-        templateUrl: '/angular/app/layout/sidebar.html'
+        templateUrl: '/angular/app/sidebar/sidebar.html'
     });
 })();
