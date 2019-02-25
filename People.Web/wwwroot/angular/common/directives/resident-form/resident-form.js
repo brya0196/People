@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .directive('resident_form', resident_form);
+        .directive('residentForm', residentForm);
 
-    resident_form.$inject = ['$window'];
+    residentForm.$inject = ['$window'];
 
-    function resident_form($window) {
+    function residentForm($window) {
         // Usage:
         //     <resident_form></resident_form>
         // Creates:
