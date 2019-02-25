@@ -15,11 +15,16 @@
         vm.residents = [];
         vm.resident = {};
         vm.saveResident = saveResident;
+        vm.deleteResident = deleteResident;
         vm.clean = clean;
 
         function saveResident() {
             vm.residents.push(vm.resident);
             vm.resident = {};
+        }
+
+        function deleteResident(id) {
+
         }
 
         function clean() {
