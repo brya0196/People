@@ -6,14 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace People.Web.Controllers.Views
 {
-    public class ResidenceController : Controller
+    public class AuthController : Controller
     {
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult New()
         {
             return View();
         }

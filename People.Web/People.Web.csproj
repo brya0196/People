@@ -25,4 +25,9 @@
     <ProjectReference Include="..\People.Data\People.Data.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\angular\app\residence\residences\" />
+  </ItemGroup>
+
 </Project>
