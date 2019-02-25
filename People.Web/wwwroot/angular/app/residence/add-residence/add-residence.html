@@ -16,7 +16,7 @@
     </div>
 
     <h5 class="text-muted mt-4">Informacion de los Residentes</h5>
-    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#resident-modal-lg">Agregar Residente</button>
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#resident-modal" ng-click="vm.clean();">Agregar Residente</button>
     <div class="row">
         <resident-list class="col-12" residents="vm.residents"></resident-list>
     </div>
@@ -29,10 +29,18 @@
 
 
 
-<div class="modal fade" id="resident-modal-lg" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <resident-form resident="resident"></resident-form>
-        </div>
+<div class="modal fade" id="resident-modal" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form name="residentForm" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4">Residente</h5>
+            </div>
+            <div class="modal-body">
+                <resident-form resident="resident" form="residentForm"></resident-form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" ng-disabled="residentForm.$invalid" ng-click="vm.saveResident();">Agregar Residente</button>
+            </div>
+        </form>
     </div>
 </div>

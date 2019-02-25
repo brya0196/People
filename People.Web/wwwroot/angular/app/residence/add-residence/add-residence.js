@@ -14,5 +14,16 @@
 
         vm.residents = [];
         vm.resident = {};
+        vm.saveResident = saveResident;
+        vm.clean = clean;
+
+        function saveResident() {
+            vm.residents.push(vm.resident);
+            vm.resident = {};
+        }
+
+        function clean() {
+            vm.resident = {};
+        }
     }
 })();

@@ -16,9 +16,10 @@
             link: link,
             restrict: 'E',
             scope: {
-                resident: '='
+                resident: '=',
+                form: '='
             },
-            templeteUrl: '/angular/common/directives/resident-form/resident-form.html'
+            templateUrl: '/angular/common/directives/resident-form/resident-form.html'
         };
         return directive;
 
