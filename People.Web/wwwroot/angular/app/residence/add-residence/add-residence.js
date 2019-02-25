@@ -19,12 +19,13 @@
         vm.clean = clean;
 
         function saveResident() {
+            console.log(vm.resident);
             vm.residents.push(vm.resident);
             vm.resident = {};
         }
 
         function deleteResident(id) {
-
+            vm.residents.split(id, 1);
         }
 
         function clean() {

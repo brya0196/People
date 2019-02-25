@@ -8,9 +8,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="residente in residents">
+        <tr ng-repeat="resident in residents">
             <td>{{$$index + 1}}</td>
             <td>{{ resident.name }} {{ resident.lastname }}</td>
+            <td>{{ resident.phone }}</td>
             <td>
                 <button type="button" class="btn btn-info">Editar</button>
                 <button type="button" class="btn btn-danger">Borrar</button>

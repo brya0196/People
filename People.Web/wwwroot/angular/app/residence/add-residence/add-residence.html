@@ -36,7 +36,7 @@
                 <h5 class="modal-title h4">Residente</h5>
             </div>
             <div class="modal-body">
-                <resident-form resident="resident" form="residentForm"></resident-form>
+                <resident-form resident="vm.resident" form="residentForm"></resident-form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success" ng-disabled="residentForm.$invalid" ng-click="vm.saveResident();">Agregar Residente</button>

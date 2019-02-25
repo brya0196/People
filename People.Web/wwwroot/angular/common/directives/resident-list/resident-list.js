@@ -23,6 +23,9 @@
         return directive;
 
         function link(scope, element, attrs) {
+            scope.$watch('residents', function (newVal) {
+                console.log(newVal);
+            });
         }
     }
 
