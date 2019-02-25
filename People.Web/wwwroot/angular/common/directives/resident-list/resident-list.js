@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .directive('resident_list', resident_list);
+        .directive('residentList', residentList);
 
-    resident_list.$inject = ['$window'];
+    residentList.$inject = ['$window'];
 
-    function resident_list($window) {
+    function residentList($window) {
         // Usage:
         //     <residents_list></residents_list>
         // Creates:
@@ -18,11 +18,12 @@
             scope: {
                 residents: '='
             },
-            templateUrl: '/angular/common/directives/resident-list/resident-list'
+            templateUrl: '/angular/common/directives/resident-list/resident-list.html'
         };
         return directive;
 
         function link(scope, element, attrs) {
+            console.log(scope);
         }
     }
 
