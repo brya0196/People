@@ -15,7 +15,10 @@
         var directive = {
             link: link,
             restrict: 'E',
-            templeteUrl: '/angular/common/directives/resident-form.html'
+            scope: {
+                resident: '='
+            },
+            templeteUrl: '/angular/common/directives/resident-form/resident-form.html'
         };
         return directive;
 

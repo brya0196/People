@@ -12,8 +12,7 @@
     function AddResidenceController() {
         var vm = this;
 
-        vm.residents = [
-
-        ];
+        vm.residents = [];
+        vm.resident = {};
     }
 })();
