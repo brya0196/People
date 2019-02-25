@@ -27,7 +27,6 @@
 
 
   <ItemGroup>
-    <Folder Include="wwwroot\angular\app\" />
     <Folder Include="wwwroot\angular\common\" />
   </ItemGroup>
 
