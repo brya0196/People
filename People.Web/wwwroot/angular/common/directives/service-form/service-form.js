@@ -5,9 +5,9 @@
         .module('app')
         .directive('serviceForm', serviceForm);
 
-    serviceForm.$inject = ['$window'];
+    serviceForm.$inject = ['$window', 'kindServiceFactory'];
 
-    function serviceForm($window) {
+    function serviceForm($window, kindServiceFactory) {
         // Usage:
         //     <service-form></service-form>
         // Creates:
@@ -23,7 +23,10 @@
         return directive;
 
         function link(scope, element, attrs) {
-            
+            kindServiceFactory.getAll().then(function (response) {
+                scope.kindServices = response.data;
+                return scope.kindServices;
+            });
         }
     }
 
