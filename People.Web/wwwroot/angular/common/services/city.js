@@ -3,14 +3,15 @@
 
     angular
         .module('app')
-        .factory('city', city);
+        .factory('CityProvince', CityProvince);
 
-    city.$inject = ['$http'];
+    CityProvince.$inject = ['$http'];
 
-    function city($http) {
+    function CityProvince($http) {
         var service = {
             getAll: getAll,
             getById: getById,
+            getByIdProvince: getByIdProvince,
             add: add,
             update: update,
             remove: remove
@@ -24,6 +25,10 @@
 
         function getById(id) {
             return $http.get("/api/City/GetById/" + id);
+        }
+
+        function getByIdProvince(id) {
+            return $http.get("/api/City/GetByIdProvince/" + id);
         }
 
         function add(city) {

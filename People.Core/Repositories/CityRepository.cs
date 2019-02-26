@@ -40,6 +40,11 @@ namespace People.Core.Repositories
             return _context.Cities.Where(c => c.Id == Id).First();
         }
 
+        public IEnumerable<City> GetByIdProvince(int Id)
+        {
+            return _context.Cities.Where(c => c.IdProvince == Id);
+        }
+
         public async Task Update(City city)
         {
             var cityFromdB = GetById(city.Id);

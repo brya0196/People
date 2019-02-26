@@ -21,16 +21,16 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpGet]
-        [Route("api/Person/GetAll")]
+        [Route("api/City/GetAll")]
         public IActionResult GetAll()
         {
             var result = _city.GetAll();
 
             return Ok(result);
         }
-
+        
         [HttpGet]
-        [Route("api/Person/GetById/{Id:int}")]
+        [Route("api/City/GetById/{Id:int}")]
         public IActionResult GetById(int Id)
         {
             var result = _city.GetById(Id);
@@ -40,8 +40,19 @@ namespace People.Web.Controllers.Api
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("api/City/GetByIdProvince/{Id:int}")]
+        public IActionResult GetByIdProvince(int Id)
+        {
+            var result = _city.GetByIdProvince(Id);
+
+            if (result == null) return NotFound();
+
+            return Ok(result);
+        }
+
         [HttpPost]
-        [Route("api/Person/Add")]
+        [Route("api/City/Add")]
         public async Task<IActionResult> Add([FromBody]City city)
         {
             if (city == null) return BadRequest();
@@ -52,7 +63,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpPut]
-        [Route("api/Person/Update")]
+        [Route("api/City/Update")]
         public async Task<IActionResult> Update([FromBody]City city)
         {
             if (city == null) return BadRequest();
@@ -63,7 +74,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpDelete]
-        [Route("api/Person/Delete")]
+        [Route("api/City/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
             if (Id == 0) return BadRequest();

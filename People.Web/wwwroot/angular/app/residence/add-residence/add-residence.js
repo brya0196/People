@@ -7,11 +7,12 @@
         controllerAs: 'vm'
     });
 
-    AddResidenceController.$inject = ['kindServiceFactory'];
+    AddResidenceController.$inject = ['kindServiceFactory', 'ProvinceFactory', 'CityProvince'];
 
-    function AddResidenceController(kindServiceFactory) {
+    function AddResidenceController(kindServiceFactory, ProvinceFactory, CityProvince) {
         var vm = this;
 
+        activate();
         vm.residents = [];
         vm.resident = {};
 
@@ -23,8 +24,16 @@
         vm.deleteResident = deleteResident;
         vm.saveService = saveService;
         vm.deleteService = deleteService;
+        vm.getCity = getCity;
 
         vm.clean = clean;
+
+        function activate() {
+            ProvinceFactory.getAll().then(function (response) {
+                vm.provinces = response.data;
+                return vm.provinces;
+            });
+        }
 
         function saveResident() {
             vm.residents.push(vm.resident);
@@ -51,6 +60,13 @@
 
         function clean() {
             vm.resident = {};
+        }
+
+        function getCity(id) {
+            CityProvince.getByIdProvince(id).then(function (response) {
+                vm.cities = response.data;
+                return vm.cities;
+            });
         }
     }
 })();

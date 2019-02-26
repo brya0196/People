@@ -13,5 +13,7 @@ namespace People.Data.Interface
         Task Add(City city);
         Task Update(City city);
         Task Delete(int Id);
+
+        IEnumerable<City> GetByIdProvince(int Id);
     }
 }

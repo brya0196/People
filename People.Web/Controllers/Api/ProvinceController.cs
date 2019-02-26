@@ -21,7 +21,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpGet("GetAll")]
-        [Route("api/Pronvice/GetAll")]
+        [Route("api/Province/GetAll")]
         public IActionResult GetAll()
         {
             var result = _province.GetAll();
@@ -30,7 +30,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpGet("GetById")]
-        [Route("api/Pronvice/GetById/{Id:int}")]
+        [Route("api/Province/GetById/{Id:int}")]
         public IActionResult GetById(int Id)
         {
             var result = _province.GetById(Id);
@@ -41,7 +41,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpPost]
-        [Route("api/Pronvice/Add")]
+        [Route("api/Province/Add")]
         public async Task<IActionResult> Add([FromBody]Province province)
         {
             if (province == null) return BadRequest();
@@ -52,7 +52,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpPut]
-        [Route("api/Pronvice/Update")]
+        [Route("api/Province/Update")]
         public async Task<IActionResult> Update([FromBody]Province province)
         {
             if (province == null) return BadRequest();
@@ -63,7 +63,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpDelete]
-        [Route("api/Pronvice/Delete")]
+        [Route("api/Province/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
             if (Id == 0) return BadRequest();
