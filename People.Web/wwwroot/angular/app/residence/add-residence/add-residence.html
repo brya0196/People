@@ -20,7 +20,7 @@
     <h5 class="text-muted mt-4">Informacion de los Residentes</h5>
     <button type="button" class="btn btn-primary rounded-0 mb-2" data-toggle="modal" data-target="#resident-modal" ng-click="vm.clean();">Agregar Residente</button>
     <div class="row">
-        <resident-list class="col-12" residents="vm.residents" ondelete="vm.deleteResident(id)"></resident-list>
+        <resident-list class="col-12" data-id="resident-modal" residents="vm.residents" ondelete="vm.deleteResident(id);" onupdate="vm.updateResident(id);"></resident-list>
     </div>
 
 

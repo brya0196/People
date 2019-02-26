@@ -17,13 +17,20 @@
             restrict: 'E',
             scope: {
                 residents: '=',
-                ondelete: '&'
+                ondelete: '&',
+                onupdate: '&'
             },
             templateUrl: '/angular/common/directives/resident-list/resident-list.html'
         };
         return directive;
 
         function link(scope, element, attrs) {
+            scope.id = attrs.id;
+
+            scope.onUpdate = function (id) {
+                scope.onupdate({ id: id });
+            };
+
             scope.onDelete = function (id) {
                 scope.ondelete({ id: id });
             };

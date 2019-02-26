@@ -22,6 +22,8 @@
         //functions
         vm.saveResident = saveResident;
         vm.deleteResident = deleteResident;
+        vm.updateResident = updateResident;
+
         vm.saveService = saveService;
         vm.deleteService = deleteService;
         vm.getCity = getCity;
@@ -42,6 +44,10 @@
 
         function deleteResident(id) {
             vm.residents.splice(id, 1);
+        }
+
+        function updateResident(id) {
+            vm.resident = vm.residents[id];
         }
 
         function saveService() {
