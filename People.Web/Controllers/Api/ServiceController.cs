@@ -30,7 +30,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpGet]
-        [Route("api/Service/GetById")]
+        [Route("api/Service/GetById/{Id:int}")]
         public IActionResult GetById(int Id)
         {
             var result = _service.GetById(Id);
