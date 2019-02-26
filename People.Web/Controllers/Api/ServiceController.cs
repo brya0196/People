@@ -51,6 +51,20 @@ namespace People.Web.Controllers.Api
             return Ok(service);
         }
 
+        [HttpPost]
+        [Route("api/Service/AddAll")]
+        public async Task<IActionResult> AddAll([FromBody]List<Service> services)
+        {
+            if (!services.Any()) return BadRequest();
+
+            foreach (var service in services)
+            {
+                await _service.Add(service);
+            }
+
+            return Ok(services);
+        }
+
         [HttpPut]
         [Route("api/Service/Update")]
         public async Task<IActionResult> Update([FromBody]Service service)

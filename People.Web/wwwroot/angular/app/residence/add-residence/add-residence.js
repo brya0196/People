@@ -7,9 +7,9 @@
         controllerAs: 'vm'
     });
 
-    AddResidenceController.$inject = [];
+    AddResidenceController.$inject = ['kindServiceFactory'];
 
-    function AddResidenceController() {
+    function AddResidenceController(kindServiceFactory) {
         var vm = this;
 
         vm.residents = [];
@@ -36,8 +36,13 @@
         }
 
         function saveService() {
-            vm.services.push(vm.service);
-            vm.service = {};
+            kindServiceFactory.getById(vm.service.idkindservice).then(function (response) {
+                vm.service.kindservice = response.data;
+                vm.services.push(vm.service);
+                vm.service = {};
+                return vm.services;
+            });
+            
         }
 
         function deleteService(id) {

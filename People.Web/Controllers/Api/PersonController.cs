@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Repositories;
@@ -46,6 +47,20 @@ namespace People.Web.Controllers.Api
             await _person.Add(person);
 
             return Ok(person);
+        }
+
+        [HttpPost]
+        [Route("api/Person/AddAll")]
+        public async Task<IActionResult> AddAll([FromBody]List<Person> people)
+        {
+            if (!people.Any()) return BadRequest();
+
+            foreach (var person in people)
+            {
+                await _person.Add(person);
+            }
+
+            return Ok(people);
         }
 
         [HttpPut]
