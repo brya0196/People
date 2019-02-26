@@ -7,7 +7,6 @@ using People.Data.Interface;
 
 namespace People.Web.Controllers.Api
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class PersonController : ControllerBase
     {
@@ -19,6 +18,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/Person/GetAll")]
         public IActionResult GetAll()
         {
             var result = _person.GetAll();
@@ -27,6 +27,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/Person/GetById")]
         public IActionResult GetById(int Id)
         {
             var result = _person.GetById(Id);
@@ -37,6 +38,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpPost]
+        [Route("api/Person/Add")]
         public async Task<IActionResult> Add([FromBody]Person person)
         {
             if (person == null) return BadRequest();
@@ -47,6 +49,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpPut]
+        [Route("api/Person/Update")]
         public async Task<IActionResult> Update([FromBody]Person person)
         {
             if (person == null) return BadRequest();
@@ -57,6 +60,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpDelete]
+        [Route("api/Person/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
             if (Id == 0) return BadRequest();
