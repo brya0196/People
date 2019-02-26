@@ -3,14 +3,14 @@
     <div class="row">
         <div class="col-4">
             <label>Provincia</label>
-            <select class="form-control rounded-0" name="province" ng-model="residence.idprovince" ng-change="vm.getCity(residence.idprovince);">
+            <select class="form-control rounded-0" name="province" ng-model="vm.residence.idprovince" ng-change="vm.getCity(vm.residence.idprovince);">
                 <option ng-value="">Seleccione</option>
                 <option ng-repeat="province in vm.provinces" ng-value="province.id">{{province.name}}</option>
             </select>
         </div>
         <div class="col-4">
             <label>Ciudad</label>
-            <select class="form-control rounded-0" name="province" ng-model="residence.idcity" ng-disabled="!residence.idprovince">
+            <select class="form-control rounded-0" name="province" ng-model="vm.residence.idcity" ng-disabled="!vm.residence.idprovince">
                 <option ng-value="">Seleccione</option>
                 <option ng-repeat="city in vm.cities" ng-value="city.id">{{city.name}}</option>
             </select>
@@ -25,10 +25,12 @@
 
 
     <h5 class="text-muted mt-4">Informacion de los Servicios</h5>
-    <button type="button" class="btn btn-primary rounded-0 mb-2" data-toggle="modal" data-target="#service-modal" ng-click="vm.clean();">Agregar Residente</button>
+    <button type="button" class="btn btn-primary rounded-0 mb-2" data-toggle="modal" data-target="#service-modal" ng-click="vm.clean();">Agregar Servicio</button>
     <div class="row">
-        <service-list class="col-12" services="vm.services" ondelete="vm.deleteService(id)"></service-list>
+        <service-list class="col-12" data-id="service-modal" services="vm.services" ondelete="vm.deleteService(id)" onupdate="vm.updateService(id);"></service-list>
     </div>
+
+    <button type="button" class="btn btn-outline-success" ng-disabled="form.$invalid">Success</button>
 </form>
 
 
@@ -43,7 +45,7 @@
                 <resident-form resident="vm.resident" form="residentForm"></resident-form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success rounded-0" ng-disabled="residentForm.$invalid" ng-click="vm.saveResident();" data-dismiss="modal">Aceptar</button>
+                <button class="btn btn-success rounded-0" ng-disabled="residentForm.$invalid" ng-click="vm.saveResident();" data-target="#resident-modal" data-toggle="modal" data-dismiss="modal">Aceptar</button>
             </div>
         </form>
     </div>
@@ -59,7 +61,7 @@
                 <service-form service="vm.service" form="serviceForm"></service-form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success rounded-0" ng-disabled="serviceForm.$invalid" ng-click="vm.saveService();" data-dismiss="modal">Aceptar</button>
+                <button class="btn btn-success rounded-0" ng-disabled="serviceForm.$invalid" ng-click="vm.saveService();" data-target="#service-modal" data-toggle="modal" data-dismiss="modal">Aceptar</button>
             </div>
         </form>
     </div>

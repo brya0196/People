@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .factory('residence', residence);
+        .factory('ResidenceFactory', ResidenceFactory);
 
-    residence.$inject = ['$http'];
+    ResidenceFactory.$inject = ['$http'];
 
-    function residence($http) {
+    function ResidenceFactory($http) {
         var service = {
             getAll: getAll,
             getById: getById,
@@ -27,11 +27,11 @@
         }
 
         function add(residence) {
-            return $http.post("/api/Residence/Add", Residence);
+            return $http.post("/api/Residence/Add", residence);
         }
 
         function update(residence) {
-            return $http.put("/api/Residence/Update", Residence);
+            return $http.put("/api/Residence/Update", residence);
         }
 
         function remove(id) {

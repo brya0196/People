@@ -7,12 +7,13 @@
         controllerAs: 'vm'
     });
 
-    AddResidenceController.$inject = ['kindServiceFactory', 'ProvinceFactory', 'CityProvince'];
+    AddResidenceController.$inject = ['$q', 'kindServiceFactory', 'ProvinceFactory', 'CityProvince', 'ResidenceFactory'];
 
-    function AddResidenceController(kindServiceFactory, ProvinceFactory, CityProvince) {
+    function AddResidenceController($q, kindServiceFactory, ProvinceFactory, CityProvince, ResidenceFactory) {
         var vm = this;
 
         activate();
+        vm.residence = {};
         vm.residents = [];
         vm.resident = {};
 
@@ -26,6 +27,8 @@
 
         vm.saveService = saveService;
         vm.deleteService = deleteService;
+        vm.updateService = updateService;
+
         vm.getCity = getCity;
 
         vm.clean = clean;
@@ -38,7 +41,8 @@
         }
 
         function saveResident() {
-            vm.residents.push(vm.resident);
+            if (!vm.residentOnUpdate) vm.residents.push(vm.resident);
+            vm.residentOnUpdate = false;
             vm.resident = {};
         }
 
@@ -47,21 +51,35 @@
         }
 
         function updateResident(id) {
+            vm.residentOnUpdate = true;
             vm.resident = vm.residents[id];
         }
 
         function saveService() {
-            kindServiceFactory.getById(vm.service.idkindservice).then(function (response) {
-                vm.service.kindservice = response.data;
-                vm.services.push(vm.service);
-                vm.service = {};
-                return vm.services;
-            });
-            
+            if (!vm.serviceOnUpdate) {
+                var service = angular.copy(vm.service);
+
+                kindServiceFactory.getById(service.idkindservice).then(function (response) {
+                    vm.service.kindservice = response.data;
+                    vm.service.payment = service.payment;
+                    vm.service.idkindservice = service.idkindservice;
+
+                    vm.services.push(vm.service);
+                    vm.service = {};
+                    return vm.services;
+                });
+            }
+            vm.serviceOnUpdate = false;
+            vm.service = {};
         }
 
         function deleteService(id) {
             vm.services.splice(id, 1);
+        }
+
+        function updateService(id) {
+            vm.serviceOnUpdate = true;
+            vm.service = vm.services[id];
         }
 
         function clean() {
@@ -73,6 +91,10 @@
                 vm.cities = response.data;
                 return vm.cities;
             });
+        }
+
+        function save() {
+            ResidenceFactory.add()
         }
     }
 })();
