@@ -1,9 +1,11 @@
 ﻿using JetBrains.Annotations;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using People.Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace People.Data
@@ -20,5 +22,20 @@ namespace People.Data
         public DbSet<Residence> Residences { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Person> People { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Province>().HasKey(p => p.Id);
+
+            modelBuilder.Entity<City>().HasKey(p => p.Id);
+
+            modelBuilder.Entity<KindService>().HasKey(p => p.Id);
+
+            modelBuilder.Entity<Residence>().HasKey(p => p.Id);
+
+            modelBuilder.Entity<Person>().HasKey(p => p.Id);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
