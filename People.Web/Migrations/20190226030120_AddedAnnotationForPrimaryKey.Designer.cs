@@ -2,16 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using People.Data;
 
 namespace People.Web.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    partial class PeopleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190226030120_AddedAnnotationForPrimaryKey")]
+    partial class AddedAnnotationForPrimaryKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,8 +183,7 @@ namespace People.Web.Migrations
             modelBuilder.Entity("People.Data.Entities.City", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("IdProvince");
 
@@ -191,7 +191,8 @@ namespace People.Web.Migrations
 
                     b.Property<int?>("ProvinceId");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasAnnotation("MySQL:AutoIncrement", true);
 
                     b.HasIndex("ProvinceId");
 
@@ -201,12 +202,12 @@ namespace People.Web.Migrations
             modelBuilder.Entity("People.Data.Entities.KindService", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasAnnotation("MySQL:AutoIncrement", true);
 
                     b.ToTable("kindServices");
                 });
@@ -214,8 +215,7 @@ namespace People.Web.Migrations
             modelBuilder.Entity("People.Data.Entities.Person", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Birthdate");
 
@@ -231,7 +231,8 @@ namespace People.Web.Migrations
 
                     b.Property<int?>("ResidenceId");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasAnnotation("MySQL:AutoIncrement", true);
 
                     b.HasIndex("ResidenceId");
 
@@ -241,12 +242,12 @@ namespace People.Web.Migrations
             modelBuilder.Entity("People.Data.Entities.Province", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasAnnotation("MySQL:AutoIncrement", true);
 
                     b.ToTable("Provinces");
                 });
@@ -254,8 +255,7 @@ namespace People.Web.Migrations
             modelBuilder.Entity("People.Data.Entities.Residence", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int?>("CityId");
 
@@ -265,7 +265,8 @@ namespace People.Web.Migrations
 
                     b.Property<string>("UserId");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasAnnotation("MySQL:AutoIncrement", true);
 
                     b.HasIndex("CityId");
 

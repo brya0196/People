@@ -25,17 +25,21 @@ namespace People.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Province>().HasKey(p => p.Id);
+            modelBuilder.Entity<Province>().Property(p => p.Id).UseMySqlIdentityColumn();
 
             modelBuilder.Entity<City>().HasKey(p => p.Id);
+            modelBuilder.Entity<City>().Property(p => p.Id).UseMySqlIdentityColumn();
 
             modelBuilder.Entity<KindService>().HasKey(p => p.Id);
+            modelBuilder.Entity<KindService>().Property(p => p.Id).UseMySqlIdentityColumn();
 
             modelBuilder.Entity<Residence>().HasKey(p => p.Id);
+            modelBuilder.Entity<Residence>().Property(p => p.Id).UseMySqlIdentityColumn();
 
             modelBuilder.Entity<Person>().HasKey(p => p.Id);
-
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Person>().Property(p => p.Id).UseMySqlIdentityColumn();
         }
     }
 }
