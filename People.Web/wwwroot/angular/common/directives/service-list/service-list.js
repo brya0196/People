@@ -3,23 +3,23 @@
 
     angular
         .module('app')
-        .directive('residentList', residentList);
+        .directive('serviceList', serviceList);
 
-    residentList.$inject = ['$window'];
+    serviceList.$inject = ['$window'];
 
-    function residentList($window) {
+    function serviceList($window) {
         // Usage:
-        //     <residents_list></residents_list>
+        //     <service-list></service-list>
         // Creates:
         // 
         var directive = {
             link: link,
             restrict: 'E',
             scope: {
-                residents: '=',
+                services: '=',
                 ondelete: '&'
             },
-            templateUrl: '/angular/common/directives/resident-list/resident-list.html'
+            templateUrl: '/angular/common/directives/service-list/service-list.html'
         };
         return directive;
 

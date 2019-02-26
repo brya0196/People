@@ -2,16 +2,16 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Nombre Completo</th>
-            <th>Telefono/Celular</th>
+            <th>Tipo de Servicio</th>
+            <th>Monto</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="resident in residents">
-            <td>{{ $index + 1 }}</td>
-            <td>{{ resident.name }} {{ resident.lastname }}</td>
-            <td>{{ resident.phone }}</td>
+        <tr ng-repeat="service in services">
+            <td>{{$index + 1}}</td>
+            <td>{{service.kindservice.name}}</td>
+            <td>{{service.payment}}</td>
             <td>
                 <button type="button" class="btn btn-info rounded-0">Editar</button>
                 <button type="button" class="btn btn-danger rounded-0" ng-click="onDelete($index);">Borrar</button>
