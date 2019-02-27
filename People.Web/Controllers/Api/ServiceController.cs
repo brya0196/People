@@ -54,6 +54,24 @@ namespace People.Web.Controllers.Api
             }
         }
 
+        [HttpGet]
+        [Route("api/Service/GetAllByIdResidence/{Id:int}")]
+        public IActionResult GetAllByIdResidence(int Id)
+        {
+            try
+            {
+                var result = _service.GetAll().Where(s => s.IdResidence == Id);
+
+                if (result == null) return NotFound();
+
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
+        }
+
         [HttpPost]
         [Route("api/Service/Add")]
         public async Task<IActionResult> Add([FromBody]Service service)
