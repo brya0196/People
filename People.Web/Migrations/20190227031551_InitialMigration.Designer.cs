@@ -2,23 +2,24 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using People.Data;
 
 namespace People.Web.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    [Migration("20190226030756_AddedAnnotationForPrimaryKey2")]
-    partial class AddedAnnotationForPrimaryKey2
+    [Migration("20190227031551_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -184,8 +185,7 @@ namespace People.Web.Migrations
             modelBuilder.Entity("People.Data.Entities.City", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("IdProvince");
 
@@ -198,26 +198,71 @@ namespace People.Web.Migrations
                     b.HasIndex("ProvinceId");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IdProvince = 1,
+                            Name = "Ciudad 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IdProvince = 2,
+                            Name = "Ciudad 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IdProvince = 3,
+                            Name = "Ciudad 3"
+                        });
                 });
 
             modelBuilder.Entity("People.Data.Entities.KindService", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
                     b.ToTable("kindServices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Luz"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Agua"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Entretenimiento"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Salud"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Estudios"
+                        });
                 });
 
             modelBuilder.Entity("People.Data.Entities.Person", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("Birthdate");
 
@@ -243,21 +288,36 @@ namespace People.Web.Migrations
             modelBuilder.Entity("People.Data.Entities.Province", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
                     b.ToTable("Provinces");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Provincia 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Provincia 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Provincia 3"
+                        });
                 });
 
             modelBuilder.Entity("People.Data.Entities.Residence", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int?>("CityId");
 

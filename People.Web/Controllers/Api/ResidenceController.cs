@@ -44,11 +44,19 @@ namespace People.Web.Controllers.Api
         [Route("api/Residence/Add")]
         public async Task<IActionResult> Add([FromBody]Residence residence)
         {
-            if (residence == null) return BadRequest();
+            try
+            {
+                if (residence == null) return BadRequest();
 
-            await _residence.Add(residence);
+                await _residence.Add(residence);
 
-            return Ok(residence);
+                return Ok(residence);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
+
         }
 
         [HttpPut]

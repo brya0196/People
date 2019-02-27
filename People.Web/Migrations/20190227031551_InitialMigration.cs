@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace People.Web.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,7 +52,7 @@ namespace People.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -64,7 +65,7 @@ namespace People.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -77,7 +78,7 @@ namespace People.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -98,7 +99,7 @@ namespace People.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -183,7 +184,7 @@ namespace People.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     IdProvince = table.Column<int>(nullable: false),
                     ProvinceId = table.Column<int>(nullable: true)
@@ -204,9 +205,11 @@ namespace People.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     IdCity = table.Column<int>(nullable: false),
-                    CityId = table.Column<int>(nullable: true)
+                    CityId = table.Column<int>(nullable: true),
+                    IdUser = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -217,6 +220,12 @@ namespace People.Web.Migrations
                         principalTable: "Cities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Residences_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,7 +233,7 @@ namespace People.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Identification = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
@@ -249,7 +258,7 @@ namespace People.Web.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Payment = table.Column<string>(nullable: true),
                     IdKindService = table.Column<int>(nullable: false),
                     IdResidence = table.Column<int>(nullable: false),
@@ -271,6 +280,38 @@ namespace People.Web.Migrations
                         principalTable: "Residences",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cities",
+                columns: new[] { "Id", "IdProvince", "Name", "ProvinceId" },
+                values: new object[,]
+                {
+                    { 1, 1, "Ciudad 1", null },
+                    { 2, 2, "Ciudad 2", null },
+                    { 3, 3, "Ciudad 3", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Provinces",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Provincia 1" },
+                    { 2, "Provincia 2" },
+                    { 3, "Provincia 3" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "kindServices",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Luz" },
+                    { 2, "Agua" },
+                    { 3, "Entretenimiento" },
+                    { 4, "Salud" },
+                    { 5, "Estudios" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -326,6 +367,11 @@ namespace People.Web.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Residences_UserId",
+                table: "Residences",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Services_KindServiceId",
                 table: "Services",
                 column: "KindServiceId");
@@ -363,9 +409,6 @@ namespace People.Web.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "kindServices");
 
             migrationBuilder.DropTable(
@@ -373,6 +416,9 @@ namespace People.Web.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cities");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Provinces");

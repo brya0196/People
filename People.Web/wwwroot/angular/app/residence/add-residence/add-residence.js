@@ -7,9 +7,9 @@
         controllerAs: 'vm'
     });
 
-    AddResidenceController.$inject = ['$q', 'kindServiceFactory', 'ProvinceFactory', 'CityProvince', 'ResidenceFactory'];
+    AddResidenceController.$inject = ['$q', '$log', 'kindServiceFactory', 'ProvinceFactory', 'CityProvince', 'ResidenceFactory', 'ServiceFactory', 'PersonService'];
 
-    function AddResidenceController($q, kindServiceFactory, ProvinceFactory, CityProvince, ResidenceFactory) {
+    function AddResidenceController($q, $log, kindServiceFactory, ProvinceFactory, CityProvince, ResidenceFactory, ServiceFactory, PersonService) {
         var vm = this;
 
         activate();
@@ -32,6 +32,7 @@
         vm.getCity = getCity;
 
         vm.clean = clean;
+        vm.save = save;
 
         function activate() {
             ProvinceFactory.getAll().then(function (response) {
@@ -94,7 +95,29 @@
         }
 
         function save() {
-            ResidenceFactory.add()
+            ResidenceFactory.add(vm.residence)
+                .then(function(response){
+                    var residence = response.data;
+
+                    angular.forEach(vm.residents, function(item){
+                        item.idresidence = residence.id;
+                    });
+
+                    angular.forEach(vm.services, function(item){
+                        item.idresidence = residence.id;
+                    });
+    
+                    $q.all([
+                        ServiceFactory.add(vm.services),
+                        PersonService.add(vm.resident)
+                    ])
+                        .then(function(response){
+                            $log.info(response);
+                        })
+                })
+                .catch(function(error){ 
+                    $log.error(error.data);
+                });
         }
     }
 })();

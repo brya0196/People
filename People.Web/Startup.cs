@@ -38,7 +38,7 @@ namespace People.Web
             });
 
             services.AddDbContext<PeopleDbContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("People.Web")));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("People.Web")));
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)

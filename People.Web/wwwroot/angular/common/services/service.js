@@ -3,11 +3,11 @@
 
     angular
         .module('app')
-        .factory('serviceFactory', serviceFactory);
+        .factory('ServiceFactory', ServiceFactory);
 
-    serviceFactory.$inject = ['$http'];
+    ServiceFactory.$inject = ['$http'];
 
-    function serviceFactory($http) {
+    function ServiceFactory($http) {
         var service = {
             getAll: getAll,
             getById: getById,

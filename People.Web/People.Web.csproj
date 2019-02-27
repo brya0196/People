@@ -16,7 +16,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.1" />
   </ItemGroup>
 
 
@@ -30,4 +31,194 @@
     <Folder Include="wwwroot\angular\app\residence\residences\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+      <HintPath>..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.core\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\angular\bower_components\alertify\.bower.json" />
+    <None Include="wwwroot\angular\bower_components\alertify\README.md" />
+    <None Include="wwwroot\angular\bower_components\alertify\alertify.js" />
+    <None Include="wwwroot\angular\bower_components\alertify\alertify.min.js" />
+    <None Include="wwwroot\angular\bower_components\alertify\component.json" />
+    <None Include="wwwroot\angular\bower_components\alertify\themes\alertify.bootstrap.css" />
+    <None Include="wwwroot\angular\bower_components\alertify\themes\alertify.core.css" />
+    <None Include="wwwroot\angular\bower_components\alertify\themes\alertify.default.css" />
+    <None Include="wwwroot\angular\bower_components\angular\.bower.json" />
+    <None Include="wwwroot\angular\bower_components\angular\LICENSE.md" />
+    <None Include="wwwroot\angular\bower_components\angular\README.md" />
+    <None Include="wwwroot\angular\bower_components\angular\angular-csp.css" />
+    <None Include="wwwroot\angular\bower_components\angular\angular.js" />
+    <None Include="wwwroot\angular\bower_components\angular\angular.min.js" />
+    <None Include="wwwroot\angular\bower_components\angular\angular.min.js.gzip" />
+    <None Include="wwwroot\angular\bower_components\angular\angular.min.js.map" />
+    <None Include="wwwroot\angular\bower_components\angular\bower.json" />
+    <None Include="wwwroot\angular\bower_components\angular\index.js" />
+    <None Include="wwwroot\angular\bower_components\angular\package.json" />
+    <None Include="wwwroot\angular\bower_components\angular-route\.bower.json" />
+    <None Include="wwwroot\angular\bower_components\angular-route\LICENSE.md" />
+    <None Include="wwwroot\angular\bower_components\angular-route\README.md" />
+    <None Include="wwwroot\angular\bower_components\angular-route\angular-route.js" />
+    <None Include="wwwroot\angular\bower_components\angular-route\angular-route.min.js" />
+    <None Include="wwwroot\angular\bower_components\angular-route\angular-route.min.js.map" />
+    <None Include="wwwroot\angular\bower_components\angular-route\bower.json" />
+    <None Include="wwwroot\angular\bower_components\angular-route\index.js" />
+    <None Include="wwwroot\angular\bower_components\angular-route\package.json" />
+    <None Include="wwwroot\angular\bower_components\lodash\.bower.json" />
+    <None Include="wwwroot\angular\bower_components\lodash\.editorconfig" />
+    <None Include="wwwroot\angular\bower_components\lodash\.gitattributes" />
+    <None Include="wwwroot\angular\bower_components\lodash\.gitignore" />
+    <None Include="wwwroot\angular\bower_components\lodash\.jscsrc" />
+    <None Include="wwwroot\angular\bower_components\lodash\.markdown-doctest-setup.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\.travis.yml" />
+    <None Include="wwwroot\angular\bower_components\lodash\CHANGELOG" />
+    <None Include="wwwroot\angular\bower_components\lodash\LICENSE" />
+    <None Include="wwwroot\angular\bower_components\lodash\README.md" />
+    <None Include="wwwroot\angular\bower_components\lodash\lodash.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\package-lock.json" />
+    <None Include="wwwroot\angular\bower_components\lodash\package.json" />
+    <None Include="wwwroot\angular\bower_components\lodash\yarn.lock" />
+    <None Include="wwwroot\angular\bower_components\lodash\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\angular\bower_components\lodash\dist\lodash.core.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\dist\lodash.core.min.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\dist\lodash.fp.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\dist\lodash.fp.min.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\dist\lodash.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\dist\lodash.min.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\dist\mapping.fp.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\doc\README.md" />
+    <None Include="wwwroot\angular\bower_components\lodash\fp\_baseConvert.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\fp\_convertBrowser.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\fp\_mapping.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\fp\placeholder.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\common\file.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\common\mapping.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\common\minify.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\common\uglify.options.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\common\util.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\build-dist.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\build-doc.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\build-modules.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\template\doc\wiki.jst" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\template\modules\_falseOptions.jst" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\template\modules\_util.jst" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\template\modules\alias.jst" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\template\modules\category.jst" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\template\modules\convert.jst" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\template\modules\fp.jst" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\template\modules\module.jst" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\fp\template\modules\thru.jst" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\main\build-dist.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\main\build-doc.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\main\build-modules.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\lib\main\build-site.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\perf\index.html" />
+    <None Include="wwwroot\angular\bower_components\lodash\perf\perf.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\perf\asset\perf-ui.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\backbone.html" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\fp.html" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\index.html" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\remove.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\saucelabs.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\test-fp.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\test.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\underscore.html" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\asset\test-ui.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\test\asset\worker.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\LICENSE" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\backbone.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\test\collection.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\test\events.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\test\model.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\test\noconflict.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\test\router.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\test\sync.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\test\view.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\test\setup\dom-setup.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\backbone\test\setup\environment.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\license.txt" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\blank.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\buttonBg.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\buttonBgHover.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\debugger.css" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\detach.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\detachHover.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\disable.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\disable.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\disableHover.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\disableHover.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\down.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\downActive.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\downHover.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\errorIcon-sm.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\errorIcon.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\errorIcon.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\firebug-1.3a2.css" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\firebug.IE6.css" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\firebug.css" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\firebug.html" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\firebug.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\group.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\html.css" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\infoIcon.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\infoIcon.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\loading_16.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\min.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\minHover.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\off.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\offHover.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\pixel_transparent.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\roundCorner.svg" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\search.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\search.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\shadow.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\shadow2.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\shadowAlpha.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\sprite.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabHoverLeft.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabHoverMid.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabHoverRight.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabLeft.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabMenuCheckbox.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabMenuPin.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabMenuRadio.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabMenuTarget.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabMenuTargetHover.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabMid.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tabRight.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\textEditorBorders.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\textEditorBorders.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\textEditorCorners.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\textEditorCorners.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\titlebarMid.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\toolbarMid.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tree_close.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\tree_open.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\twistyClosed.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\twistyOpen.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\up.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\upActive.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\upHover.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\warningIcon.gif" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\skin\xp\warningIcon.png" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\firebug-lite\src\firebug-lite-debug.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\json-js\json2.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\LICENSE" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\underscore-min.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\underscore.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\test\arrays.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\test\chaining.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\test\collections.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\test\cross-document.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\test\functions.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\test\objects.js" />
+    <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\test\utility.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\20190224183615_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20190224183615_Initial.cs" />
+    <Compile Remove="Migrations\20190224184805_AddedIdUserToResidenceEntity.cs" />
+  </ItemGroup>
 </Project>
