@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Repositories;
 using People.Data.Entities;
@@ -22,67 +24,109 @@ namespace People.Web.Controllers.Api
         [Route("api/Person/GetAll")]
         public IActionResult GetAll()
         {
-            var result = _person.GetAll();
+            try
+            {
+                var result = _person.GetAll();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpGet]
         [Route("api/Person/GetById/{Id:int}")]
         public IActionResult GetById(int Id)
         {
-            var result = _person.GetById(Id);
+            try
+            {
+                var result = _person.GetById(Id);
 
-            if (result == null) return NotFound();
+                if (result == null) return NotFound();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPost]
         [Route("api/Person/Add")]
         public async Task<IActionResult> Add([FromBody]Person person)
         {
-            if (person == null) return BadRequest();
+            try
+            {
+                if (person == null) return BadRequest();
 
-            await _person.Add(person);
+                await _person.Add(person);
 
-            return Ok(person);
+                return Ok(person);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPost]
         [Route("api/Person/AddAll")]
         public async Task<IActionResult> AddAll([FromBody]List<Person> people)
         {
-            if (!people.Any()) return BadRequest();
-
-            foreach (var person in people)
+            try
             {
-                await _person.Add(person);
-            }
+                if (!people.Any()) return BadRequest();
 
-            return Ok(people);
+                foreach (var person in people)
+                {
+                    await _person.Add(person);
+                }
+
+                return Ok(people);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPut]
         [Route("api/Person/Update")]
         public async Task<IActionResult> Update([FromBody]Person person)
         {
-            if (person == null) return BadRequest();
+            try
+            {
+                if (person == null) return BadRequest();
 
-            await _person.Update(person);
+                await _person.Update(person);
 
-            return Ok(person);
+                return Ok(person);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpDelete]
         [Route("api/Person/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
-            if (Id == 0) return BadRequest();
+            try
+            {
+                if (Id == 0) return BadRequest();
 
-            await _person.Delete(Id);
+                await _person.Delete(Id);
 
-            return Ok("Deleted");
+                return Ok("Deleted");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
     }
 }

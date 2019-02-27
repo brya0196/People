@@ -24,67 +24,109 @@ namespace People.Web.Controllers.Api
         [Route("api/Service/GetAll")]
         public IActionResult GetAll()
         {
-            var result = _service.GetAll();
+            try
+            {
+                var result = _service.GetAll();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpGet]
         [Route("api/Service/GetById/{Id:int}")]
         public IActionResult GetById(int Id)
         {
-            var result = _service.GetById(Id);
+            try
+            {
+                var result = _service.GetById(Id);
 
-            if (result == null) return NotFound();
+                if (result == null) return NotFound();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPost]
         [Route("api/Service/Add")]
         public async Task<IActionResult> Add([FromBody]Service service)
         {
-            if (service == null) return BadRequest();
+            try
+            {
+                if (service == null) return BadRequest();
 
-            await _service.Add(service);
+                await _service.Add(service);
 
-            return Ok(service);
+                return Ok(service);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPost]
         [Route("api/Service/AddAll")]
         public async Task<IActionResult> AddAll([FromBody]List<Service> services)
         {
-            if (!services.Any()) return BadRequest();
-
-            foreach (var service in services)
+            try
             {
-                await _service.Add(service);
-            }
+                if (!services.Any()) return BadRequest();
 
-            return Ok(services);
+                foreach (var service in services)
+                {
+                    await _service.Add(service);
+                }
+
+                return Ok(services);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPut]
         [Route("api/Service/Update")]
         public async Task<IActionResult> Update([FromBody]Service service)
         {
-            if (service == null) return BadRequest();
+            try
+            {
+                if (service == null) return BadRequest();
 
-            await _service.Update(service);
+                await _service.Update(service);
 
-            return Ok(service);
+                return Ok(service);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpDelete]
         [Route("api/Service/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
-            if (Id == 0) return BadRequest();
+            try
+            {
+                if (Id == 0) return BadRequest();
 
-            await _service.Delete(Id);
+                await _service.Delete(Id);
 
-            return Ok("Deleted");
+                return Ok("Deleted");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
     }
 }
