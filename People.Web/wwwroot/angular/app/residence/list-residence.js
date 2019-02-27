@@ -7,7 +7,7 @@
         controllerAs: 'vm'
     });
 
-    ListController.$inject = ['$log', '$q', 'ResidenceFactory'];
+    ListController.$inject = ['$log', '$q', 'ResidenceFactory', 'PersonService', 'PersonService'];
 
     function ListController($log, $q, ResidenceFactory) {
         var vm = this;

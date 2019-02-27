@@ -3,14 +3,15 @@
 
     angular
         .module('app')
-        .factory('PersonService', PersonService);
+        .factory('PersonaFactory', PersonaFactory);
 
-    PersonService.$inject = ['$http'];
+    PersonaFactory.$inject = ['$http'];
 
-    function PersonService($http) {
+    function PersonaFactory($http) {
         var service = {
             getAll: getAll,
             getById: getById,
+            getByIdResidence: getByIdResidence,
             add: add,
             addAll: addAll,
             update: update,
@@ -25,6 +26,10 @@
 
         function getById(id) {
             return $http.get("/api/Person/GetById/" + id);
+        }
+
+        function getByIdResidence(id) {
+            return $http.get("/api/Person/GetByIdResidence/" + id);
         }
 
         function add(person) {

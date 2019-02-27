@@ -7,9 +7,9 @@
         controllerAs: 'vm'
     });
 
-    AddResidenceController.$inject = ['$q', '$log', 'kindServiceFactory', 'ProvinceFactory', 'CityProvince', 'ResidenceFactory', 'ServiceFactory', 'PersonService'];
+    AddResidenceController.$inject = ['$q', '$log', 'kindServiceFactory', 'ProvinceFactory', 'CityProvince', 'ResidenceFactory', 'ServiceFactory', 'PersonaFactory'];
 
-    function AddResidenceController($q, $log, kindServiceFactory, ProvinceFactory, CityProvince, ResidenceFactory, ServiceFactory, PersonService) {
+    function AddResidenceController($q, $log, kindServiceFactory, ProvinceFactory, CityProvince, ResidenceFactory, ServiceFactory, PersonaFactory) {
         var vm = this;
 
         activate();
@@ -115,7 +115,7 @@
     
                     $q.all([
                         vm.services.length > 0 ? ServiceFactory.addAll(vm.services) : null,
-                        vm.residents.length > 0 ? PersonService.addAll(vm.residents) : null
+                        vm.residents.length > 0 ? PersonaFactory.addAll(vm.residents) : null
                     ])
                         .then(function (response) {
                             $log.info(response);

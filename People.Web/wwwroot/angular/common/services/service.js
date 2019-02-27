@@ -11,6 +11,7 @@
         var service = {
             getAll: getAll,
             getById: getById,
+            getAllByIdResidence: getAllByIdResidence,
             add: add,
             addAll: addAll,
             update: update,
@@ -25,6 +26,10 @@
 
         function getById(id) {
             return $http.get("/api/Service/GetById/" + id);
+        }
+
+        function getAllByIdResidence(id) {
+            return $http.get("/api/Service/GetAllByIdResidence/" + id);
         }
 
         function add(service) {

@@ -3,13 +3,13 @@
 
     angular.module('app').component('editResidence', {
         templateUrl: "/angular/app/residence/form-residence.html",
-        controller: AddResidenceController,
+        controller: EditResidenceController,
         controllerAs: 'vm'
     });
 
-    AddResidenceController.$inject = ['$q', '$log', 'kindServiceFactory', 'ProvinceFactory', 'CityProvince', 'ResidenceFactory', 'ServiceFactory', 'PersonService'];
+    EditResidenceController.$inject = ['$q', '$log', 'kindServiceFactory', 'ProvinceFactory', 'CityProvince', 'ResidenceFactory', 'ServiceFactory', 'PersonaFactory'];
 
-    function AddResidenceController($q, $log, kindServiceFactory, ProvinceFactory, CityProvince, ResidenceFactory, ServiceFactory, PersonService) {
+    function EditResidenceController($q, $log, kindServiceFactory, ProvinceFactory, CityProvince, ResidenceFactory, ServiceFactory, PersonaFactory) {
         var vm = this;
 
         activate();
