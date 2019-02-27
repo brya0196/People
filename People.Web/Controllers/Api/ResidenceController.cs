@@ -92,7 +92,7 @@ namespace People.Web.Controllers.Api
         }
 
         [HttpDelete]
-        [Route("api/Residence/Delete")]
+        [Route("api/Residence/Delete/{Id:int}")]
         public async Task<IActionResult> Delete(int Id)
         {
             try

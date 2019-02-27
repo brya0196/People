@@ -35,7 +35,7 @@
         }
 
         function remove(id) {
-            return $http.delete("/api/Province/Delete", id);
+            return $http.delete("/api/Province/Delete/" + id);
         }
     }
 })();

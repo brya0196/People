@@ -35,7 +35,7 @@
         }
 
         function remove(id) {
-            return $http.delete("/api/Residence/Delete", id);
+            return $http.delete("/api/Residence/Delete/"+ id);
         }
     }
 })();

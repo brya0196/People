@@ -40,7 +40,7 @@
         }
 
         function remove(id) {
-            return $http.delete("/api/Person/Delete", id);
+            return $http.delete("/api/Person/Delete/" + id);
         }
     }
 })();

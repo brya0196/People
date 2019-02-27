@@ -10,7 +10,7 @@
     <tbody>
         <tr ng-repeat="service in services">
             <td>{{$index + 1}}</td>
-            <td>{{service.kindservice.name}}</td>
+            <td>{{service.kindservicename.name}}</td>
             <td>{{service.payment}}</td>
             <td>
                 <button type="button" class="btn btn-info rounded-0" data-toggle="modal" data-target="#{{id}}" ng-click="onUpdate($index);">Editar</button>

@@ -35,7 +35,7 @@
         }
 
         function remove(id) {
-            return $http.delete("/api/KindService/Delete", id);
+            return $http.delete("/api/KindService/Delete/" + id);
         }
     }
 })();
