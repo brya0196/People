@@ -109,15 +109,24 @@
                     });
     
                     $q.all([
-                        ServiceFactory.add(JSON.stringify(vm.services)),
-                        PersonService.add(JSON.stringify(vm.residents))
+                        ServiceFactory.addAll(vm.services),
+                        PersonService.addAll(vm.residents)
                     ])
                         .then(function (response) {
                             $log.info(response);
+                            alertify.alert("Agregada nueva residencia", "Se agrego la nueva Residencia sin problema")
+                                .set({
+                                    'movable': false,
+                                    'closableByDimmer': false
+                                });
                         });
                 })
                 .catch(function(error){ 
                     $log.error(error.data);
+                    alertify.alert("Error Agregando", "Se produjo al agregar la nueva residencia")
+                        .set({
+                            'movable': false
+                        });
                 });
         }
     }

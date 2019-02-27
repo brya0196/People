@@ -12,6 +12,7 @@
             getAll: getAll,
             getById: getById,
             add: add,
+            addAll: addAll,
             update: update,
             remove: remove
         };
@@ -28,6 +29,10 @@
 
         function add(person) {
             return $http.post("/api/Person/Add", person);
+        }
+
+        function addAll(people) {
+            return $http.post("/api/Person/AddAll", people);
         }
 
         function update(person) {

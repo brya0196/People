@@ -16,38 +16,28 @@
               integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/angular/bower_components/alertify/css/alertify.min.css" />
+    <link rel="stylesheet" href="~/angular/bower_components/alertify/css/themes/bootstrap.min.css" />
 </head>
-<body>
-    @*<header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+<body class="bg-light">
+    <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
                 <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">People.Web</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">People</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <partial name="_LoginPartial" />
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </nav>
-        </header>*@
-    <div class="row">
+        </header>
+    <div class="container">
         <partial name="_CookieConsentPartial" />
-        <main role="main" class="row col-12">
-            <side-bar class="col-2"></side-bar>
-            <div class="col-10">
+        <main role="main">
                 @RenderBody()
-            </div>
-
         </main>
     </div>
 
@@ -74,6 +64,7 @@
     <script src="~/angular/bower_components/angular/angular.min.js"></script>
     <script src="~/angular/bower_components/angular-route/angular-route.min.js"></script>
     <script src="~/angular/bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="~/angular/bower_components/alertify/alertify.js"></script>
     <script src="~/angular/app.js" asp-append-version="true"></script>
 
     <!--Services-->
@@ -86,6 +77,16 @@
 
     <!--Layout-->
     <script src="~/angular/app/sidebar/sidebar.js"></script>
+
+    <!--Alertify Config-->
+    <script>
+        $(document).ready(function () {
+            alertify.defaults.transition = "slide";
+            alertify.defaults.theme.ok = "btn btn-primary";
+            alertify.defaults.theme.cancel = "btn btn-danger";
+            alertify.defaults.theme.input = "form-control";
+        });
+    </script>
 
     @RenderSection("Scripts", required: false)
 </body>
