@@ -114,7 +114,11 @@
                     ])
                         .then(function (response) {
                             $log.info(response);
-                            alertify.alert("Agregada nueva residencia", "Se agrego la nueva Residencia sin problema")
+                            alertify.alert("Agregada nueva residencia",
+                                "Se agrego la nueva Residencia sin problema",
+                                function () {
+                                    window.location.href = "/residence";
+                                })
                                 .set({
                                     'movable': false,
                                     'closableByDimmer': false
