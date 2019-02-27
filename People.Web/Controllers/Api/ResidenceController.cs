@@ -24,20 +24,34 @@ namespace People.Web.Controllers.Api
         [Route("api/Residence/GetAll")]
         public IActionResult GetAll()
         {
-            var result = _residence.GetAll();
+            try
+            {
+                var result = _residence.GetAll();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpGet]
         [Route("api/Residence/GetById/{Id:int}")]
         public IActionResult GetById(int Id)
         {
-            var result = _residence.GetById(Id);
+            try
+            {
+                var result = _residence.GetById(Id);
 
-            if (result == null) return NotFound();
+                if (result == null) return NotFound();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch(Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPost]
@@ -63,22 +77,36 @@ namespace People.Web.Controllers.Api
         [Route("api/Residence/Update")]
         public async Task<IActionResult> Update([FromBody]Residence residence)
         {
-            if (residence == null) return BadRequest();
+            try
+            {
+                if (residence == null) return BadRequest();
 
-            await _residence.Update(residence);
+                await _residence.Update(residence);
 
-            return Ok(residence);
+                return Ok(residence);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpDelete]
         [Route("api/Residence/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
-            if (Id == 0) return BadRequest();
+            try
+            {
+                if (Id == 0) return BadRequest();
 
-            await _residence.Delete(Id);
+                await _residence.Delete(Id);
 
-            return Ok("Deleted");
+                return Ok("Deleted");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
     }
 }

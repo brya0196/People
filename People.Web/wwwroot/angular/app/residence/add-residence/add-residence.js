@@ -105,15 +105,16 @@
 
                     angular.forEach(vm.services, function(item){
                         item.idresidence = residence.id;
+                        delete item.kindservice;
                     });
     
                     $q.all([
-                        ServiceFactory.add(vm.services),
-                        PersonService.add(vm.resident)
+                        ServiceFactory.add(JSON.stringify(vm.services)),
+                        PersonService.add(JSON.stringify(vm.residents))
                     ])
-                        .then(function(response){
+                        .then(function (response) {
                             $log.info(response);
-                        })
+                        });
                 })
                 .catch(function(error){ 
                     $log.error(error.data);
