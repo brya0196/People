@@ -24,53 +24,88 @@ namespace People.Web.Controllers.Api
         [Route("api/KindService/GetAll")]
         public IActionResult GetAll()
         {
-            var result = _kindService.GetAll();
+            try
+            {
+                var result = _kindService.GetAll();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpGet]
         [Route("api/KindService/GetById/{Id:int}")]
         public IActionResult GetById(int Id)
         {
-            var result = _kindService.GetById(Id);
+            try
+            {
+                var result = _kindService.GetById(Id);
 
-            if (result == null) return NotFound();
+                if (result == null) return NotFound();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPost]
-        [Route("api/KindService/GetAdd")]
+        [Route("api/KindService/Add")]
         public async Task<IActionResult> Add([FromBody]KindService kindService)
         {
-            if (kindService == null) return BadRequest();
+            try
+            {
+                if (kindService == null) return BadRequest();
 
-            await _kindService.Add(kindService);
+                await _kindService.Add(kindService);
 
-            return Ok(kindService);
+                return Ok(kindService);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPut]
         [Route("api/KindService/Update")]
         public async Task<IActionResult> Update([FromBody]KindService kindService)
         {
-            if (kindService == null) return BadRequest();
+            try
+            {
+                if (kindService == null) return BadRequest();
 
-            await _kindService.Update(kindService);
+                await _kindService.Update(kindService);
 
-            return Ok(kindService);
+                return Ok(kindService);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpDelete]
         [Route("api/KindService/Delete/{id:int}")]
         public async Task<IActionResult> Delete(int Id)
         {
-            if (Id == 0) return BadRequest();
+            try
+            {
+                if (Id == 0) return BadRequest();
 
-            await _kindService.Delete(Id);
+                await _kindService.Delete(Id);
 
-            return Ok("Deleted");
+                return Ok("Deleted");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
     }
 }

@@ -24,64 +24,107 @@ namespace People.Web.Controllers.Api
         [Route("api/City/GetAll")]
         public IActionResult GetAll()
         {
-            var result = _city.GetAll();
+            try
+            {
+                var result = _city.GetAll();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
         
         [HttpGet]
         [Route("api/City/GetById/{Id:int}")]
         public IActionResult GetById(int Id)
         {
-            var result = _city.GetById(Id);
+            try
+            {
+                var result = _city.GetById(Id);
 
-            if (result == null) return NotFound();
+                if (result == null) return NotFound();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpGet]
         [Route("api/City/GetByIdProvince/{Id:int}")]
         public IActionResult GetByIdProvince(int Id)
         {
-            var result = _city.GetByIdProvince(Id);
+            try
+            {
+                var result = _city.GetByIdProvince(Id);
 
-            if (result == null) return NotFound();
+                if (result == null) return NotFound();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPost]
         [Route("api/City/Add")]
         public async Task<IActionResult> Add([FromBody]City city)
         {
-            if (city == null) return BadRequest();
+            try
+            {
+                if (city == null) return BadRequest();
 
-            await _city.Add(city);
+                await _city.Add(city);
 
-            return Ok(city);
+                return Ok(city);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPut]
         [Route("api/City/Update")]
         public async Task<IActionResult> Update([FromBody]City city)
         {
-            if (city == null) return BadRequest();
+            try
+            {
+                if (city == null) return BadRequest();
 
-            await _city.Update(city);
+                await _city.Update(city);
 
-            return Ok(city);
+                return Ok(city);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpDelete]
         [Route("api/City/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
-            if (Id == 0) return BadRequest();
+            try
+            {
+                if (Id == 0) return BadRequest();
 
-            await _city.Delete(Id);
+                await _city.Delete(Id);
 
-            return Ok("Deleted");
+                return Ok("Deleted");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
+            
         }
     }
 }

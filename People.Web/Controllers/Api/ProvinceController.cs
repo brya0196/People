@@ -24,53 +24,88 @@ namespace People.Web.Controllers.Api
         [Route("api/Province/GetAll")]
         public IActionResult GetAll()
         {
-            var result = _province.GetAll();
+            try
+            {
+                var result = _province.GetAll();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpGet("GetById")]
         [Route("api/Province/GetById/{Id:int}")]
         public IActionResult GetById(int Id)
         {
-            var result = _province.GetById(Id);
+            try
+            {
+                var result = _province.GetById(Id);
 
-            if (result == null) return NotFound();
+                if (result == null) return NotFound();
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPost]
         [Route("api/Province/Add")]
         public async Task<IActionResult> Add([FromBody]Province province)
         {
-            if (province == null) return BadRequest();
+            try
+            {
+                if (province == null) return BadRequest();
 
-            await _province.Add(province);
+                await _province.Add(province);
 
-            return Ok(province);
+                return Ok(province);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpPut]
         [Route("api/Province/Update")]
         public async Task<IActionResult> Update([FromBody]Province province)
         {
-            if (province == null) return BadRequest();
+            try
+            {
+                if (province == null) return BadRequest();
 
-            await _province.Update(province);
+                await _province.Update(province);
 
-            return Ok(province);
+                return Ok(province);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
 
         [HttpDelete]
         [Route("api/Province/Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
-            if (Id == 0) return BadRequest();
+            try
+            {
+                if (Id == 0) return BadRequest();
 
-            await _province.Delete(Id);
+                await _province.Delete(Id);
 
-            return Ok("Deleted");
+                return Ok("Deleted");
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e);
+            }
         }
     }
 }
