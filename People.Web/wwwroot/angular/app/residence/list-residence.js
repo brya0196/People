@@ -17,7 +17,6 @@
 
         function activate() {
             getResidenceData().then(function (response) {
-                $log.info(response);
                 vm.residences = response;
                 return vm.residences;
             });
