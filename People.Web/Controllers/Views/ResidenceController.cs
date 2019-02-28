@@ -17,5 +17,10 @@ namespace People.Web.Controllers.Views
         {
             return View();
         }
+
+        public IActionResult Edit()
+        {
+            return View();
+        }
     }
 }

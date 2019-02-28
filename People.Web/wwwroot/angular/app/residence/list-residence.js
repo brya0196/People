@@ -16,10 +16,15 @@
 
 
         function activate() {
-            getResidenceData().then(function (response) {
-                vm.residences = response;
-                return vm.residences;
-            });
+            getResidenceData()
+                .then(function (response) {
+                    vm.residences = response;
+                    return vm.residences;
+                })
+                .catch(function (error) {
+                    $log.danger(error);
+                    alertify.alert("Error", "Se produjo al momento de obtener las residencias").set({ 'movable': false });
+                });
         }
 
         function getResidenceData() {
@@ -44,7 +49,6 @@
                         var numberOfResidents = 0;
 
                         angular.forEach(services, function (service) {
-                            //$log.info(service);
                             if (service.idResidence === residence.id) numberOfServices += 1;
                         });
 

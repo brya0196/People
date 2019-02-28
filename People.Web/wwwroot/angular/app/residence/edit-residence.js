@@ -7,9 +7,9 @@
         controllerAs: 'vm'
     });
 
-    EditResidenceController.$inject = ['$q', '$log', 'kindServiceFactory', 'ProvinceFactory', 'CityProvince', 'ResidenceFactory', 'ServiceFactory', 'PersonaFactory'];
+    EditResidenceController.$inject = ['$q', '$log', 'kindServiceFactory', 'ProvinceFactory', 'CityFactory', 'ResidenceFactory', 'ServiceFactory', 'PersonaFactory'];
 
-    function EditResidenceController($q, $log, kindServiceFactory, ProvinceFactory, CityProvince, ResidenceFactory, ServiceFactory, PersonaFactory) {
+    function EditResidenceController($q, $log, kindServiceFactory, ProvinceFactory, CityFactory, ResidenceFactory, ServiceFactory, PersonaFactory) {
         var vm = this;
 
         activate();
@@ -35,6 +35,9 @@
         vm.save = save;
 
         function activate() {
+
+            $log(window.location.href);
+
             ProvinceFactory.getAll().then(function (response) {
                 vm.provinces = response.data;
                 return vm.provinces;
