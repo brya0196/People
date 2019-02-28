@@ -1,7 +1,7 @@
 ﻿<div class="card">
     <div class="card-header">Residencias</div>
     <div class="card-body">
-        <table class="table table-hover">
+        <table class="table table-hover text-center">
             <thead>
                 <tr>
                     <th>#</th>
@@ -12,8 +12,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="residence in residences">
-                    
+                <tr ng-repeat="residence in vm.residences" >
+                    <td>{{residence.id}}</td>
+                    <td>{{residence.Province.name}} {{residence.City.name}}</td>
+                    <td>{{residence.numberOfResidents}}</td>
+                    <td>{{residence.numberOfServices}}</td>
+                    <td>
+                        <a href="/residence/edit/{{residence.id}}" class="btn btn-info rounded-0">Editar</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
