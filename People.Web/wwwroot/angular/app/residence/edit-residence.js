@@ -35,8 +35,13 @@
         vm.save = save;
 
         function activate() {
+            var url = window.location.pathname.split("/");
+            var id = url[url.length - 1];
+            $log.info(id);
 
-            $log(window.location.href);
+            ResidenceFactory.getById(id).then(function (response) {
+                $log.info(response.data);
+            });
 
             ProvinceFactory.getAll().then(function (response) {
                 vm.provinces = response.data;
