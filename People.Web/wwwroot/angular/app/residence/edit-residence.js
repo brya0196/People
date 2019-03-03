@@ -115,7 +115,7 @@
 
         }
 
-        $scope.$watch('vm.residence.idprovince', function (newValue) {
+        $scope.$watch('vm.residence.idProvince', function (newValue) {
             if (newValue) getCity(newValue);
         });
     }
