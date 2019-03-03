@@ -61,9 +61,9 @@
                 var service = angular.copy(vm.service);
 
                 kindServiceFactory.getById(service.idkindservice).then(function (response) {
-                    vm.service.kindservice = response.data;
+                    vm.service.kindServiceEntity = response.data;
                     vm.service.payment = service.payment;
-                    vm.service.idkindservice = service.idkindservice;
+                    vm.service.idKindService = service.idkindservice;
 
                     vm.services.push(vm.service);
                     vm.service = {};

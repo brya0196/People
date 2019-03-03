@@ -10,14 +10,14 @@
             <div class="row">
                 <div class="col-4">
                     <label>Provincia</label>
-                    <select class="form-control rounded-0" name="province" ng-model="vm.residence.idprovince" ng-change="vm.getCity(vm.residence.idprovince);">
+                    <select class="form-control rounded-0" name="province" ng-model="vm.residence.idProvince" ng-change="vm.getCity(vm.residence.idProvince);">
                         <option ng-value="">Seleccione</option>
                         <option ng-repeat="province in vm.provinces" ng-value="province.id">{{province.name}}</option>
                     </select>
                 </div>
                 <div class="col-4">
                     <label>Ciudad</label>
-                    <select class="form-control rounded-0" name="province" ng-model="vm.residence.idcity" ng-disabled="!vm.residence.idprovince">
+                    <select class="form-control rounded-0" name="province" ng-model="vm.residence.idCity" ng-disabled="!vm.residence.idProvince">
                         <option ng-value="">Seleccione</option>
                         <option ng-repeat="city in vm.cities" ng-value="city.id">{{city.name}}</option>
                     </select>
