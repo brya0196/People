@@ -79,15 +79,36 @@
 
         function saveResident() {
             if (vm.resident.id) {
-                PersonaFactory.update(vm.resident).then(function (response) { getPersona(); });
+                PersonaFactory.update(vm.resident)
+                    .then(function (response) {
+                        getPersona();
+                    })
+                    .catch(function (error) {
+                        $log.error(error);
+                        $log.info(datos);
+
+                        alertify.alert("Error", "Se produjo al momento de actualizar el/la residente, intente de nuevo").set({ 'movable': false });
+                    });
             }
             else {
-                PersonaFactory.add(vm.resident).then(function (response) { getPersona(); });
+                vm.resident.idResidence = vm.residence.id;
+                PersonaFactory.add(vm.resident)
+                    .then(function (response) {
+                        getPersona();
+                    })
+                    .catch(function (error) {
+                        $log.error(error);
+                        $log.info(datos);
+
+                        alertify.alert("Error", "Se produjo al momento de crear el/la residente, intente de nuevo").set({ 'movable': false });
+                    });
             }
         }
 
         function deleteResident(id) {
-
+            PersonaFactory.remove(id).then(function (response) {
+                getPersona();
+            });
         }
 
         function getPersona() {
@@ -106,11 +127,29 @@
 
         function saveService() {
             if (vm.service.id) {
-                ServiceFactory.update(vm.service).then(function (response) { getServices(); });
+                ServiceFactory.update(vm.service)
+                    .then(function (response) {
+                        getServices();
+                    })
+                    .catch(function (error) {
+                        $log.error(error);
+                        $log.info(datos);
+
+                        alertify.alert("Error", "Se produjo un error al momento de actualizar el servicio, intente de nuevo").set({ 'movable': false });
+                    });
             }
             else {
                 vm.service.idResidence = vm.residence.id;
-                ServiceFactory.add(vm.service).then(function (response) { getServices(); });
+                ServiceFactory.add(vm.service)
+                    .then(function (response) {
+                        getServices();
+                    })
+                    .catch(function (error) {
+                        $log.error(error);
+                        $log.info(datos);
+
+                        alertify.alert("Error", "Se produjo un error al momento de crear el servicio, intente de nuevo").set({ 'movable': false });
+                    });
             }
         }
 
@@ -150,7 +189,23 @@
         }
 
         function save() {
+            ResidenceFactory.update(vm.residence)
+                .then(function (response) {
+                    alertify.alert("Residencia Actualizada",
+                        "Se actualizo la informacion sobre las Residencia",
+                        function () {
+                            window.location.href = "/residence";
+                        })
+                        .set({
+                            'movable': false,
+                            'closableByDimmer': false
+                        });
+                }).catch(function (error) {
+                    $log.error(error);
+                    $log.info(datos);
 
+                    alertify.alert("Error Actualizando la Residencia", "Se produjo al momento de actulizar la residencia, intente de nuevo").set({ 'movable': false });
+                });
         }
 
         $scope.$watch('vm.residence.idProvince', function (newValue) {
