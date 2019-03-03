@@ -13,8 +13,11 @@
             <td>{{ resident.name }} {{ resident.lastname }}</td>
             <td>{{ resident.phone }}</td>
             <td>
-                <button type="button" class="btn btn-info rounded-0" data-toggle="modal" data-target="#{{id}}" ng-click="onUpdate($index);">Editar</button>
-                <button type="button" class="btn btn-danger rounded-0" ng-click="onDelete($index);">Borrar</button>
+                <button type="button" class="btn btn-info rounded-0" ng-hide="resident.id" data-toggle="modal" data-target="#{{id}}" ng-click="onUpdate($index);">Editar</button>
+                <button type="button" class="btn btn-danger rounded-0" ng-hide="resident.id" ng-click="onDelete($index);">Borrar</button>
+
+                <button type="button" class="btn btn-info rounded-0" ng-show="resident.id" data-toggle="modal" data-target="#{{id}}" ng-click="onUpdate(resident.id);">Editar</button>
+                <button type="button" class="btn btn-danger rounded-0" ng-show="resident.id" ng-click="onDelete(resident.id);">Borrar</button>
             </td>
         </tr>
     </tbody>
