@@ -13,8 +13,10 @@
             <td>{{service.kindServiceEntity.name}}</td>
             <td>{{service.payment}}</td>
             <td>
-                <button type="button" class="btn btn-info rounded-0" data-toggle="modal" data-target="#{{id}}" ng-click="onUpdate($index);">Editar</button>
-                <button type="button" class="btn btn-danger rounded-0" ng-click="onDelete($index);">Borrar</button>
+                <button type="button" class="btn btn-info rounded-0" data-toggle="modal" data-target="#{{id}}" ng-hide="service.id" ng-click="onUpdate($index);">Editar</button>
+                <button type="button" class="btn btn-info rounded-0" data-toggle="modal" data-target="#{{id}}" ng-show="service.id" ng-click="onUpdate(service.id);">Editar</button>
+                <button type="button" class="btn btn-danger rounded-0" ng-hide="service.id" ng-click="onDelete($index);">Borrar</button>
+                <button type="button" class="btn btn-danger rounded-0" ng-show="service.id" ng-click="onDelete(service.id);">Borrar</button>
             </td>
         </tr>
     </tbody>

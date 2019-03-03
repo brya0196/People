@@ -60,10 +60,10 @@
             if (!vm.serviceOnUpdate) {
                 var service = angular.copy(vm.service);
 
-                kindServiceFactory.getById(service.idkindservice).then(function (response) {
+                kindServiceFactory.getById(service.idKindService).then(function (response) {
                     vm.service.kindServiceEntity = response.data;
                     vm.service.payment = service.payment;
-                    vm.service.idKindService = service.idkindservice;
+                    vm.service.idKindService = service.idKindService;
 
                     vm.services.push(vm.service);
                     vm.service = {};

@@ -85,7 +85,7 @@
         }
 
         function updateResident(id) {
-
+            $log.info(id);
         }
 
         function saveService() {
@@ -97,7 +97,10 @@
         }
 
         function updateService(id) {
-
+            $log.info(id);
+            ServiceFactory.getById(id).then(function (response) {
+                vm.service = response.data;
+            });
         }
 
         function clean() {
