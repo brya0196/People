@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="residence in vm.residences" >
+                <tr ng-repeat="residence in vm.residences | orderBy:'id'">
                     <td>{{residence.id}}</td>
                     <td>{{residence.Province.name}} {{residence.City.name}}</td>
                     <td>{{residence.numberOfResidents}}</td>
