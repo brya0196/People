@@ -10,7 +10,7 @@
     <tbody>
         <tr ng-repeat="resident in residents track by $index">
             <td>{{ $index + 1 }}</td>
-            <td>{{ resident.name }} {{ resident.lastname }}</td>
+            <td>{{ resident.name }} {{ resident.lastName }}</td>
             <td>{{ resident.phone }}</td>
             <td>
                 <button type="button" class="btn btn-info rounded-0" ng-hide="resident.id" data-toggle="modal" data-target="#{{id}}" ng-click="onUpdate($index);">Editar</button>

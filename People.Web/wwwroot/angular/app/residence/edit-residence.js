@@ -61,7 +61,8 @@
                             residence.data.idProvince = _.find(provinces, { id: residence.data.cityEntity.idProvince }).id;
 
                         angular.forEach(service, function (item) {
-                            if (_.find(vm.kindsService, { id: item.idKindService })) item.kindServiceEntity = _.find(vm.kindsService, { id: item.idKindService });
+                            if (_.find(vm.kindsService, { id: item.idKindService }))
+                                item.kindServiceEntity = _.find(vm.kindsService, { id: item.idKindService });
                         });
 
                         vm.residence = residence.data;
@@ -77,11 +78,22 @@
         }
 
         function saveResident() {
-
+            if (vm.resident.id) {
+                PersonaFactory.update(vm.resident).then(function (response) { getPersona(); });
+            }
+            else {
+                PersonaFactory.add(vm.resident).then(function (response) { getPersona(); });
+            }
         }
 
         function deleteResident(id) {
 
+        }
+
+        function getPersona() {
+            PersonaFactory.getByIdResidence(vm.residence.id).then(function (response) {
+                vm.residents = response.data;
+            });
         }
 
         function updateResident(id) {
@@ -93,7 +105,6 @@
         }
 
         function saveService() {
-            $log.info(vm.service);
             if (vm.service.id) {
                 ServiceFactory.update(vm.service).then(function (response) { getServices(); });
             }
@@ -103,25 +114,26 @@
             }
         }
 
-        function getServices() {
-            ServiceFactory.getAllByIdResidence(vm.residence.id).then(function (response) {
-                angular.forEach(response.data, function (item) {
-                    if (_.find(vm.kindsService, { id: item.idKindService })) item.kindServiceEntity = _.find(vm.kindsService, { id: item.idKindService });
-                    $log.info(item);
-                });
-
-                vm.services = response.data;
-            });
-        }
-
         function deleteService(id) {
-
+            ServiceFactory.remove(id).then(function (response) {
+                getServices();
+            });
         }
 
         function updateService(id) {
             ServiceFactory.getById(id).then(function (response) {
                 vm.service = response.data;
                 return vm.service;
+            });
+        }
+
+        function getServices() {
+            ServiceFactory.getAllByIdResidence(vm.residence.id).then(function (response) {
+                angular.forEach(response.data, function (item) {
+                    if (_.find(vm.kindsService, { id: item.idKindService })) item.kindServiceEntity = _.find(vm.kindsService, { id: item.idKindService });
+                });
+
+                vm.services = response.data;
             });
         }
 
