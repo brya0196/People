@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using People.Core.Repositories;
@@ -10,6 +11,7 @@ using People.Data.Interface;
 
 namespace People.Web.Controllers.Api
 {
+    [Authorize]
     [ApiController]
     public class PersonController : ControllerBase
     {

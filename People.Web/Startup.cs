@@ -16,6 +16,7 @@ using People.Data;
 using People.Data.Interface;
 using People.Core.Repositories;
 using People.Data.Entities;
+using System.Net;
 
 namespace People.Web
 {
@@ -43,8 +44,25 @@ namespace People.Web
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<PeopleDbContext>()
-                .AddDefaultUI()
                 .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(config => {
+                config.Events = new Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = ctx => {
+                        if (ctx.Request.Path.StartsWithSegments("/api"))
+                        {
+                            ctx.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        }
+                        else
+                        {
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                        }
+
+                        return Task.FromResult(0);
+                    }
+                };
+            });
 
             // injection repositories
             services.AddScoped<IProvince, ProvinceRepository>();
