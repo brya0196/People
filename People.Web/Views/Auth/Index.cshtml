@@ -1,33 +1,10 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Login";
 }
 
-<h1>Index</h1>
 <login></login>
 
 @section Scripts {
-    <script>
-        (function () {
-            'use strct';
-
-            angular.module('app').component('login', {
-                template: '<div></div>',
-                controller: LoginController,
-                controllerAs: 'vm'
-            });
-
-            LoginController.$inject = ['$log', 'AuthenticationFactory'];
-
-            function LoginController($log, AuthenticationFactory) {
-                AuthenticationFactory.login({ username: "test", password: "Password@123" })
-                    .then(function (response) {
-                        $log.info(response);
-                    })
-                    .catch(function (error) {
-                        $log.info(error);
-                    });
-            }
-        })();
-    </script>
+    <script src="~/angular/app/login/login.js"></script>
 }

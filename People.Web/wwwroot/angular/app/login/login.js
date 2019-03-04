@@ -7,10 +7,27 @@
         controllerAs: 'vm'
     });
 
-    LoginController.$inject = [];
+    LoginController.$inject = ['$log', 'AuthenticationFactory'];
 
-    function LoginController() {
+    function LoginController($log, AuthenticationFactory) {
         var vm = this;
+
+        vm.user = {};
+
+        vm.login = login;
+
+        function login() {
+            AuthenticationFactory.login(vm.user)
+                .then(function (response) {
+                    $log.info(response);
+                   // window.location.href = "/residence";
+                })
+                .catch(function (error) {
+                    $log.info(error);
+
+                    alertify.alert("Error", "Usuario o Contraseña incorrectos").set({ 'movable': false });
+                });
+        }
     }
 
 })();

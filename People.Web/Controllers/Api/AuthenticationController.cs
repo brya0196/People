@@ -19,10 +19,12 @@ namespace People.Web.Controllers.Api
     public class AuthenticationController : ControllerBase
     {
         private UserManager<ApplicationUser> _userManager;
+        private SignInManager<ApplicationUser> _signInManager;
 
-        public AuthenticationController(UserManager<ApplicationUser> userManager)
+        public AuthenticationController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [HttpPost]
