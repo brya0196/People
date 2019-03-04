@@ -14,7 +14,7 @@ namespace People.Data.Entities
         public City City { get; set; }
 
         public int IdUser { get; set; }
-        public IdentityUser User { get; set; }
+        public ApplicationUser User { get; set; }
 
         public List<Person> People { get; set; }
         public List<Service> Services { get; set; }

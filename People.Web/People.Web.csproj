@@ -211,9 +211,4 @@
     <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\test\objects.js" />
     <None Include="wwwroot\angular\bower_components\lodash\vendor\underscore\test\utility.js" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Migrations\20190224183615_Initial.Designer.cs" />
-    <Compile Remove="Migrations\20190224183615_Initial.cs" />
-    <Compile Remove="Migrations\20190224184805_AddedIdUserToResidenceEntity.cs" />
-  </ItemGroup>
 </Project>

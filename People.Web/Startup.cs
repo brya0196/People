@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using People.Data;
 using People.Data.Interface;
 using People.Core.Repositories;
+using People.Data.Entities;
 
 namespace People.Web
 {
@@ -40,9 +41,10 @@ namespace People.Web
             services.AddDbContext<PeopleDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("People.Web")));
 
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<PeopleDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<PeopleDbContext>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
 
             // injection repositories
             services.AddScoped<IProvince, ProvinceRepository>();
@@ -51,6 +53,8 @@ namespace People.Web
             services.AddScoped<IResidence, ResidenceRepository>();
             services.AddScoped<IPerson, PersonRepository>();
             services.AddScoped<IService, ServiceRepository>();
+            services.AddScoped<SignInManager<ApplicationUser>, SignInManager<ApplicationUser>>();
+            services.AddScoped<UserManager<ApplicationUser>, UserManager<ApplicationUser>>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -72,6 +76,8 @@ namespace People.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            SeedDatabase.Initializer(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
 
             app.UseAuthentication();
 

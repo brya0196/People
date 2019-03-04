@@ -10,9 +10,9 @@ using System.Text;
 
 namespace People.Data
 {
-    public class PeopleDbContext : IdentityDbContext
+    public class PeopleDbContext : IdentityDbContext<ApplicationUser>
     {
-        public PeopleDbContext(DbContextOptions options) : base(options)
+        public PeopleDbContext(DbContextOptions<PeopleDbContext> options) : base(options)
         {
         }
 
