@@ -20,7 +20,7 @@
             AuthenticationFactory.login(vm.user)
                 .then(function (response) {
                     $log.info(response);
-                   // window.location.href = "/residence";
+                    window.location.href = "/dashboard";
                 })
                 .catch(function (error) {
                     $log.info(error);

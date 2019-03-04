@@ -13,31 +13,18 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE="/>
+              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/angular/bower_components/alertify/css/alertify.min.css" />
     <link rel="stylesheet" href="~/angular/bower_components/alertify/css/themes/bootstrap.min.css" />
 </head>
 <body class="bg-light">
-    <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">People</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <partial name="_LoginPartial" />
-                    </div>
-                </div>
-            </nav>
-        </header>
+    <header><nav-bar></nav-bar></header>
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main">
-                @RenderBody()
+            @RenderBody()
         </main>
     </div>
 
@@ -79,7 +66,7 @@
     <script src="~/angular/common/services/authentication.js"></script>
 
     <!--Layout-->
-    <script src="~/angular/app/sidebar/sidebar.js"></script>
+    <script src="~/angular/app/navbar/navbar.js"></script>
 
     <!--Alertify Config-->
     <script>

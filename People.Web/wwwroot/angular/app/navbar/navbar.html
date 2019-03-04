@@ -1,0 +1,14 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3" ng-show="vm.user">
+    <div class="container">
+        <a class="navbar-brand text-white" href="/dashboard">People</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+            <a href="#" ng-click="vm.logout();" class="nav-link text-white">{{ vm.user.email }}</a>
+            <a href="/residence" class="nav-link text-white">Residencias</a>
+            <a href="/dashboard" class="nav-link text-white">Dashboard</a>
+        </div>
+    </div>
+</nav>

@@ -8,11 +8,13 @@
     AuthenticationFactory.$inject = ['$http', '$q'];
 
     function AuthenticationFactory($http, $q) {
+        window.localStorage.setItem('authenticated', false);
         var service = {
             login: login,
             getToken: getToken,
             getUserInfo: getUserInfo,
-            logout: logout
+            logout: logout,
+            authenticated: window.localStorage.getItem('authenticated') == "true" ? true : false
         };
 
         return service;
@@ -31,6 +33,8 @@
                         username: user.user.username
                     }));
 
+                    window.localStorage.setItem('authenticated', true);
+
                     deferred.resolve(response);
                 })
                 .catch(function (error) {
@@ -42,7 +46,7 @@
 
         function getToken() {
             var user = JSON.parse(window.localStorage.getItem('userData'));
-            console.log("Bearer " + user.token);
+
             return "Bearer " + user.token;
         }
 
@@ -54,6 +58,7 @@
 
         function logout() {
             window.localStorage.removeItem('userData');
+            window.localStorage.setItem('authenticated', false);
             return true;
         }
     }
