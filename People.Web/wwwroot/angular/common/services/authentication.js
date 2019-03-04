@@ -24,11 +24,12 @@
                 .then(function (response) {
                     var user = response.data;
 
-                    window.localStorage.setItem('userData', {
+                    window.localStorage.setItem('userData', JSON.stringify({
                         id: user.user.id,
                         email: user.user.email,
-                        token: user.token
-                    });
+                        token: user.token,
+                        username: user.user.username
+                    }));
 
                     deferred.resolve(response);
                 })
@@ -40,29 +41,20 @@
         }
 
         function getToken() {
-            var user = window.localStorage.getItem('userData');
-
-            return "beare " + user.token;
+            var user = JSON.parse(window.localStorage.getItem('userData'));
+            console.log("Bearer " + user.token);
+            return "Bearer " + user.token;
         }
 
         function getUserInfo() {
-            var user = window.localStorage.getItem('userData');
+            var user = JSON.parse(window.localStorage.getItem('userData'));
 
             return user;
         }
 
         function logout() {
-            $http.post("/api/Authentication/Logout", data)
-                .then(function (response) {
-                    var user = response.data;
-
-                    window.localStorage.removeItem('userData');
-
-                    deferred.resolve(response);
-                })
-                .catch(function (error) {
-                    deferred.reject(error);
-                });
+            window.localStorage.removeItem('userData');
+            return true;
         }
     }
 })();

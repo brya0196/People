@@ -5,9 +5,9 @@
         .module('app')
         .factory('ProvinceFactory', ProvinceFactory);
 
-    ProvinceFactory.$inject = ['$http'];
+    ProvinceFactory.$inject = ['$http', 'AuthenticationFactory'];
 
-    function ProvinceFactory($http) {
+    function ProvinceFactory($http, AuthenticationFactory) {
         var service = {
             getAll: getAll,
             getById: getById,
@@ -19,23 +19,43 @@
         return service;
 
         function getAll() {
-            return $http.get("/api/Province/GetAll");
+            return $http.get("/api/Province/GetAll", {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
 
         function getById(id) {
-            return $http.get("/api/Province/GetById/" + id);
+            return $http.get("/api/Province/GetById/" + id, {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
 
         function add(province) {
-            return $http.post("/api/Province/Add", province);
+            return $http.post("/api/Province/Add", province, {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
 
         function update(province) {
-            return $http.put("/api/Province/Update", province);
+            return $http.put("/api/Province/Update", province, {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
 
         function remove(id) {
-            return $http.delete("/api/Province/Delete/" + id);
+            return $http.delete("/api/Province/Delete/" + id, {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
     }
 })();

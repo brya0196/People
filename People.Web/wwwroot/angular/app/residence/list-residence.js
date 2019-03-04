@@ -22,7 +22,7 @@
                     return vm.residences;
                 })
                 .catch(function (error) {
-                    $log.danger(error);
+                    $log.error(error);
                     alertify.alert("Error", "Se produjo al momento de obtener las residencias").set({ 'movable': false });
                 });
         }

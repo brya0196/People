@@ -41,16 +41,16 @@ namespace People.Web.Controllers.Api
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 };
 
-                var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySuperSecureKey"));
+                var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("MySuperSecureKey"));
 
 
                 var token = new JwtSecurityToken(
-                    issuer: "http://oec.com",
-                    audience: "http://oec.com",
+                    issuer: "https://localhost:44334/",
+                    audience: "https://localhost:44334/",
                     expires: DateTime.UtcNow.AddHours(1),
                     claims: claims,
-                    signingCredentials: new Microsoft.IdentityModel.Tokens.SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
-                    );
+                    signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
+                 );
 
                 return Ok(new
                 {

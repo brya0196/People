@@ -5,9 +5,9 @@
         .module('app')
         .factory('kindServiceFactory', kindServiceFactory);
 
-    kindServiceFactory.$inject = ['$http'];
+    kindServiceFactory.$inject = ['$http', 'AuthenticationFactory'];
 
-    function kindServiceFactory($http) {
+    function kindServiceFactory($http, AuthenticationFactory) {
         var service = {
             getAll: getAll,
             getById: getById,
@@ -19,23 +19,43 @@
         return service;
 
         function getAll() {
-            return $http.get("/api/KindService/GetAll");
+            return $http.get("/api/KindService/GetAll", {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
 
         function getById(id) {
-            return $http.get("/api/KindService/GetById/" + id);
+            return $http.get("/api/KindService/GetById/" + id, {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
 
         function add(kindService) {
-            return $http.post("/api/KindService/Add", kindService);
+            return $http.post("/api/KindService/Add", kindService, {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
 
         function update(kindService) {
-            return $http.put("/api/KindService/Update", kindService);
+            return $http.put("/api/KindService/Update", kindService, {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
 
         function remove(id) {
-            return $http.delete("/api/KindService/Delete/" + id);
+            return $http.delete("/api/KindService/Delete/" + id, {
+                headers: {
+                    "Authorization": AuthenticationFactory.getToken()
+                }
+            });
         }
     }
 })();
